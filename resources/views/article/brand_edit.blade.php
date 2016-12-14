@@ -337,9 +337,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">项目咨询人数</label>
+                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">开店所需面积</label>
                                                         <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" value="{{$brand->brandchat}}" placeholder="项目咨询人数"/>
+                                                            <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" value="{{$brand->brandchat}}" placeholder="开店所需面积"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
@@ -650,29 +650,23 @@
         uploadUrl: "/article/uploads",
         uploadAsync: false,
         minFileCount: 2,
-        maxFileCount: 5,
+        maxFileCount: 6,
         overwriteInitial: false,
         initialPreview: [
             // IMAGE DATA
-            "/frontend/images/temp/brand_01.png",
+                @foreach($pics as $pic)
+            "{{$pic}}",
             // IMAGE DATA
-            "/frontend/images/temp/brand_01.png",
-            "/frontend/images/temp/brand_01.png",
-            "/frontend/images/temp/brand_01.png",
-            "/frontend/images/temp/brand_01.png",
-            "/frontend/images/temp/brand_01.png",
+           @endforeach
 
 
         ],
         initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
         initialPreviewFileType: 'image', // image is the default and can be overridden in config below
         initialPreviewConfig: [
-            {caption: "Desert.jpg", size: 827000, width: "120px", url: "/file-upload-batch/2", key: 1},
-            {caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 2},
-            {caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 3},
-            {caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 4},
-            {caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 5},
-            {caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 6},
+                @foreach($pics as $indexnum=>$pic)
+            {caption: "{{$indexnum+1}}", size: 827000, width: "120px", url: "/file-upload-batch/2", key: [ {{$indexnum+1}} ,'{{$pic}}',{{$article_datas->id}}]},
+                @endforeach
 
         ],
         purifyHtml: true, // this by default purifies HTML data for preview
@@ -681,9 +675,12 @@
             img_keywords: "happy, places",
         }
     }).on('filesorted', function(e, params) {
+        alert(222);
         console.log('File sorted params', params);
-    }).on('fileuploaded', function(e, params) {
-        console.log('File uploaded params', params);
+    }).on('fileuploaded', function(event, data) {
+        $("#imagespic").val($("#imagespic").val()+data.response.link+',');
+    }).on('filepreremoved', function() {
+        alert(111);
     });
 
 </script>

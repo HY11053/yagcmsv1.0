@@ -202,6 +202,11 @@ class ArticleController extends Controller
         $data=$category->all();
         $article_mid=$article->where('id','=',$request->input($id))->value('mid');
         $article_data=$article->where('id','=',$inputid)->withTrashed()->get();
+        //缩略图处理
+        $litpics=$addonarticle->where('aid','=',$inputid)->value('imageslitpic');
+        $pics=array_filter(explode(',',$litpics));
+        //dd($pics);
+
         if( $article_mid!==1){
             return view('article.edit',compact(
                 'data','article_data',
@@ -217,7 +222,8 @@ class ArticleController extends Controller
                 'inputid','addonarticle_tag',
                 'addonarticle_coordinates',
                 'article_flag',
-                'addonarticle_brand'
+                'addonarticle_brand',
+                'pics'
             ));
 
         }
@@ -231,7 +237,7 @@ class ArticleController extends Controller
      */
 
     function postUpdate(Request $request){
-    dd($request->all());
+    //dd($request->all());
         if(!empty($request->title) && !empty($request->typeid)){
             $archives=new Archive;
             $addonarticle=new addonarticle;
@@ -272,6 +278,7 @@ class ArticleController extends Controller
                         'coordinates'=>$request->country]
                 );
             }else{
+                $litpics=$addonarticle->where('aid','=',$request->articelid)->value('imageslitpic');
                 $addonarticle->where('aid', $request->articelid)->update(
                     [
                         'typeid'=>$request->typeid,
@@ -291,9 +298,7 @@ class ArticleController extends Controller
                         'brandgroup'=>$request->brandgroup,
                         'brandgarea'=>$request->brandgarea,
                         'brandduty'=>$request->brandduty,
-                        'imageslitpic'=>$request->imagespic
-
-
+                        'imageslitpic'=>$request->imagespic.$litpics
                     ]
                 );
 
@@ -456,8 +461,16 @@ class ArticleController extends Controller
         var_dump($request->all());
     }
     function deletePics(Request $request){
-        var_dump($request->all());
-        return '{}';
+        $requestinfo=$request->input('key');
+        $arrinfos=explode(',',$requestinfo);
+        $addonarticles=new addonarticle;
+        $imageslitpic=str_replace(',,',',',str_replace($arrinfos[1],'',$addonarticles->where('aid',$arrinfos[2])->value('imageslitpic')));
+        $addonarticles->where('aid', $arrinfos[2])->update(
+            [
+                'imageslitpic'=>$imageslitpic
+            ]);
+
+        return $arrinfos[0] ;
 
     }
 }

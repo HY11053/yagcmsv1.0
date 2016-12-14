@@ -28,18 +28,18 @@
 		<!--幻灯片开始-->
 		<div class="brand_slide">
 			<ul class="bigImg">
-				<li><a target="_blank" href="#"><img src="/frontend/images/temp/brand_01.png" alt=""/></a></li>
-				<li><a target="_blank" href="#"><img src="/frontend/images/temp/brand_01.png" alt=""/></a></li>
-				<li><a target="_blank" href="#"><img src="/frontend/images/temp/brand_01.png" alt=""/></a></li>
-				<li><a target="_blank" href="#"><img src="/frontend/images/temp/brand_01.png" alt=""/></a></li>
+				@foreach($data_articlelitpics as $articlelitpic)
+
+				<li><a target="_blank" href="#"><img src="{{$articlelitpic}}" alt="{{$data_archive->shorttitle}}"/></a></li>
+				@endforeach
+
 			</ul>
 			<div class="smallScroll"><a class="sPrev" href="javascript:void(0)"></a>
 				<div class="smallImg">
 					<ul>
-						<li><img src="/frontend/images/temp/brand_01.png" alt=""/></li>
-						<li><img src="/frontend/images/temp/brand_01.png" alt=""/></li>
-						<li><img src="/frontend/images/temp/brand_01.png" alt=""/></li>
-						<li><img src="/frontend/images/temp/brand_01.png" alt=""/></li>
+						@foreach($data_articlelitpics as $articlelitpic)
+						<li><img src="{{$articlelitpic}}" alt="{{$data_archive->shorttitle}}"/></li>
+						@endforeach
 
 					</ul>
 				</div>
@@ -62,6 +62,7 @@
 					<li>加盟区域：<span class="price">{{$data_article->brabdaea}}</span></li>
 					<li>适合人群：<span class="price">{{$data_article->brandperson}}</span></li>
 					<li>经营范围：<span class="price">{{$data_article->brandmap}}</span></li>
+					<li>店铺面积：<span class="price">{{$data_article->brandchat}} ㎡</span></li>
 				</ul>
 			</div>
 			<div class="jiem">

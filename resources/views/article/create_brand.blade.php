@@ -343,9 +343,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">项目咨询人数</label>
+                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">开店所需面积</label>
                                                         <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" placeholder="项目咨询人数"/>
+                                                            <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" placeholder="开店所需面积"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-6">

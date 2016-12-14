@@ -27,58 +27,56 @@
 	<div class="cate_sort">
 		  <dl>
 			  <dt>已经筛选条件：</dt>
-				<dd><span><i><a href="#">X</a></i>类目：<strong>餐饮</strong></span></dd>
+				<dd></dd>
 		  </dl>
-		  <dl>
-			<dt>项目分类</dt>
-				<dd><a class="hover" target="_self" href="#">全部</a></dd>
-				<dd><a target="_self" href="#">零食店加盟</a></dd>
-				<dd><a target="_self" href="#">炒货加盟</a></dd>
-				<dd><a target="_self" href="#">干果加盟</a></dd>
-				<dd><a target="_self" href="#">进口零食加盟</a></dd>   					
-		  </dl>
-		  <dl>
+		<dl>
+		<dt>项目分类</dt>
+		<dd><a class="hover" target="_self" href="#">全部</a></dd>
+		<dd><a target="_self" href="/lsbrand/">零食加盟店</a></dd>
+		<dd><a target="_self" href="/ganguodian/">干果加盟店</a></dd>
+		<dd><a target="_self" href="/chaohuodian/">炒货加盟店</a></dd>
+		<dd><a target="_self" href="/jinkoulingshi/">进口零食加盟店</a></dd>
+
+		</dl>
+		<dl>
 			<dt>投资金额</dt>
-				<dd><a class="hover" target="_self" href="#">全部</a></dd>
-				<dd><a target="_self" href="#">1万元以内</a></dd>   		
-				<dd><a target="_self" href="#">1-5万元</a></dd>   		
-				<dd><a target="_self" href="#">5-10万元</a></dd>   		
-				<dd><a target="_self" href="#">10-20万元</a></dd>   		
-				<dd><a target="_self" href="#">20-50万元</a></dd>   		
-				<dd><a target="_self" href="#">50-100万元</a></dd>
-				<dd><a target="_self" href="#">100万元以上</a></dd>  		
-		  </dl>
-		  <dl>
+			<dd><a class="hover" target="_self" href="#">全部</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_1_5_0.shtml">1-5万元</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_5_10_0.shtml">5-10万元</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_10_20_0.shtml">10-20万元</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_20_30_0.shtml">20-30万元</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_30_50_0.shtml">30-50万元</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_50_100_0.shtml">50-100万元</a></dd>
+		</dl>
+		<dl>
 			<dt>店铺面积</dt>
-				<dd><a class="hover" target="_self" href="#">全部</a></dd>
-				<dd><a target="_self" href="#">无需店面</a></dd>
-				<dd><a target="_self" href="#">10平米以下</a></dd>
-				<dd><a target="_self" href="#">10-30平米</a></dd>
-				<dd><a target="_self" href="#">30-80平米</a></dd>
-				<dd><a target="_self" href="#">80-150平米</a></dd>
-				<dd><a target="_self" href="#">150平米以上</a></dd>
-		  </dl>
-		  <dl>
+			<dd><a class="hover" target="_self" href="#">全部</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_0_0_10.shtml">10平米以下</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_0_10_30.shtml">10-30平米</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_0_30_50.shtml">30-50平米</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_0_50_80.shtml">50-80平米</a></dd>
+			<dd><a target="_self" href="/search/lsbrand_0_100_200.shtml">100平米以上</a></dd>
+		</dl>
+		<dl>
 			<dt>所在地区</dt>
 				<dd><a class="hover" target="_self" href="#">全部</a></dd>
-				<dd><a target="_self" href="#">北京</a></dd>
-				<dd><a target="_self" href="#">济南</a></dd>
-				<dd><a target="_self" href="#">广州</a></dd>
-				<dd><a target="_self" href="#">合肥</a></dd>
-				<dd><a target="_self" href="#">上海</a></dd>
-				<dd><a target="_self" href="#">秦皇岛</a></dd>
-				<dd><a target="_self" href="#">武汉</a></dd>
-				<dd><a target="_self" href="#">南京</a></dd>
-				<dd><a target="_self" href="#">长沙</a></dd>
-				<dd><a target="_self" href="#">青岛</a></dd>
-				<dd><a target="_self" href="#">深圳</a></dd>
-				<dd><a target="_self" href="#">成都</a></dd>
-				<dd><a target="_self" href="#">沈阳</a></dd>
-				<dd><a target="_self" href="#">重庆</a></dd>
-				<dd><a target="_self" href="#">郑州</a></dd>
-				<dd><a target="_self" href="#">杭州</a></dd>
-				<dd><a target="_self" href="#">佛山</a></dd>
-				<dd><a target="_self" href="#">其他</a></dd>
+				<dd><a target="_self" href="/search/city/1">北京</a></dd>
+				<dd><a target="_self" href="/search/city/125">济南</a></dd>
+				<dd><a target="_self" href="/search/city/71">广州</a></dd>
+				<dd><a target="_self" href="/search/city/281">合肥</a></dd>
+				<dd><a target="_self" href="/search/city/400">上海</a></dd>
+				<dd><a target="_self" href="/search/city/282">芜湖</a></dd>
+				<dd><a target="_self" href="/search/city/195">武汉</a></dd>
+				<dd><a target="_self" href="/search/city/112">南京</a></dd>
+				<dd><a target="_self" href="/search/city/296">长沙</a></dd>
+				<dd><a target="_self" href="/search/city/126">青岛</a></dd>
+				<dd><a target="_self" href="/search/city/72">深圳</a></dd>
+				<dd><a target="_self" href="/search/city/164">成都</a></dd>
+				<dd><a target="_self" href="/search/city/139">沈阳</a></dd>
+				<dd><a target="_self" href="/search/city/29">重庆</a></dd>
+				<dd><a target="_self" href="/search/city/212">郑州</a></dd>
+				<dd><a target="_self" href="/search/city/101">杭州</a></dd>
+				<dd><a target="_self" href="/search/city/83">佛山</a></dd>
 		  </dl>
 	</div>
 	<!--分类筛选 结束-->

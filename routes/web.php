@@ -69,5 +69,6 @@ Route::get('lsbrand/{catename}/{id}.shtml','Frontend\FrontendController@getArtic
 Route::get('news/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
 
 //搜索路由
+Route::get('search/city/{id}','Search\searchController@getSearchCity')->where(['id'=>'[0-9]+']);
 Route::get('search/{br}.shtml','Search\searchController@getSearch')->where(['br'=>'[a-z_0-9]+'])->name('searchs');
 Route::post('search/post','Search\searchController@postsearch');

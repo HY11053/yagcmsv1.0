@@ -1,64 +1,48 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
+$mysqli =new mysqli('localhost', 'root', '', 'shipinjm');
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+    exit();
+}
+$mysqli->set_charset("utf8");
+//获取附加表字段数据
+$brand_key='亲亲';
+$sql="SELECT dede_archives.description,dede_archives.title,dede_archives.litpic,dede_archives.id,dede_arctype.typedir FROM dede_archives,dede_arctype WHERE dede_archives.typeid=dede_arctype.id  AND dede_arctype.id<>14 AND dede_archives.arcrank<>-2 AND  dede_archives.title LIKE '%{$brand_key}%' ORDER  BY id desc LIMIT 1,14";
 
-//GBK编码的请删除上面的head头信息启用下面的head头信息
-
-//header("Content-type: text/html; charset=gb2312");
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-$urlXML='sitemap.xml';
-
-$filename="url.txt";
-
-$resourTxt='';
-
-//定义对应的xml文件地址
-
-$xmlPath='http://www.51xxsp.com/sitemap.xml';
-
-$ownResource=file_get_contents($xmlPath);
-
-
-
-if(!empty($ownResource)){
-
-    file_put_contents($urlXML, $ownResource);
-
-}else{
-
-    echo 'XML文件读取失败，请检查路径是否正确或php.ini配置文件中allow_url_fopen = On是否开启';
-
+$rows=$mysqli->query($sql);
+while ($row = $rows->fetch_assoc()){
+    $res[]=$row;
 }
 
-
-
-if(file_exists($urlXML)){
-
-    $xmlObj = simplexml_load_file($urlXML,'SimpleXMLElement', LIBXML_NOCDATA);
-
-
-    for($i=0;$i<count($xmlObj->url);$i++){
-
-        $resourTxt =trim($xmlObj->url[$i]->loc).' '. trim(str_replace('www.51xxsp.com/','m.51xxsp.com/index.php/',$xmlObj->url[$i]->loc)).'<br/>';
-        echo $resourTxt;
-
-
-
+if(count($res)>0){
+    $strs='';
+    for ($i=0;$i<count($res); $i++){
+        $typeidr=str_replace('{cmspath}','',$res[$i]['typedir']);
+        $res[$i]['description']=mb_substr($res[$i]['description'],0,22,'utf-8');
+        $strs .= <<<"EOD"
+<li><a href="{$typeidr}/{$res[$i]['id']}.html" title="{$res[$i]['title']}">{$res[$i]['title']}</a></li>
+EOD;
     }
 
-
-
-
-}else{
-
-    echo"XML文件读取错误";
-
-
+    echo $strs;
 }
+$num=14-count($res);
+$num2=count($res);
+if($num>0){
+    $sql2="SELECT dede_archives.title,dede_archives.litpic,dede_archives.id,dede_arctype.typedir FROM dede_archives,dede_arctype WHERE dede_archives.typeid=dede_arctype.id  AND dede_arctype.id<>14 AND dede_archives.arcrank<>-2  ORDER  BY id desc LIMIT $num2,$num";
 
-
-
+    $rows2=$mysqli->query($sql2);
+    while ($row2 = $rows2->fetch_assoc()){
+        $res2[]=$row2;
+    }
+}
+if(count($res2)>0) {
+    $strs2 = '';
+    for ($i = 0; $i < count($res2); $i++) {
+        $typeidr = str_replace('{cmspath}', '', $res2[$i]['typedir']);
+        $strs2 .= <<<"EOD"
+<li><a href="{$typeidr}/{$res2[$i]['id']}.html" title="{$res2[$i]['title']}">{$res2[$i]['title']}</a></li>
+EOD;
+    }
+    echo $strs2;
+}

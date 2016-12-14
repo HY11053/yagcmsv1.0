@@ -241,6 +241,7 @@ class FrontendController extends Controller
             if($typeid){
 
                 $data_article=$article->where('aid',$matches[2])->where('typeid', "$typeid")->first();
+
                 $data_archive=$archives->where('id',$matches[2])->where('typeid', "$typeid")->first();
                 $tjarticles=$this->getFlagarticle(1,'',10,0,10,0);
                 $htarticles=$this->getFlagarticle($typeid,'h',1,0,1,1);
@@ -251,7 +252,10 @@ class FrontendController extends Controller
                     if($data_archive->mid ==1){
                         $navstopdir=substr($categorys->where('id',1)->value('typedir'),0,strlen($categorys->where('id','1')->value('typedir'))-1);
                         $newbrands=$this->getFlagarticle(1,'',18);
-                        return view('frontend.brand_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles'));
+                        $data_articlelitpic=$article->where('aid',$matches[2])->where('typeid', "$typeid")->value('imageslitpic');
+                        $data_articlelitpics=array_filter(explode(',',$data_articlelitpic));
+
+                        return view('frontend.brand_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
                     }else{
 
                         return view('frontend.news_show',compact('data_article','data_archive','typelinks','retypedir','tjarticles','htarticles','hotbrands'));
