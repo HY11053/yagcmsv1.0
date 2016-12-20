@@ -9,6 +9,7 @@ use App\Model\addonarticle;
 use App\Model\category;
 use App\Model\Archive;
 use App\Model\Flink;
+use DB;
 
 
 class FrontendController extends Controller
@@ -285,8 +286,6 @@ class FrontendController extends Controller
     function getNewsarticle(Request $request){
         $categorys=new category;
         $typelinks=$categorys->where('reid',0)->get();
-
-
         if(preg_match('/([\w]+)\/([\d]+)\.shtml/', $request->path(), $matches)){
             $article=new addonarticle;
             $archives=new Archive;
@@ -514,4 +513,61 @@ class FrontendController extends Controller
 
 
     }
+
+    function getPaihangbang(){
+
+        //栏目部分
+        $categorys=new category;
+        $brandaiticle= new Archive;
+        //品牌导航部分
+        $navs=$categorys->where('reid','1')->orderBy('id','asc')->get();
+        $navstopdir=substr($categorys->where('id','1')->value('typedir'),0,strlen($categorys->where('id','1')->value('typedir'))-1);
+        $typelinks=$categorys->where('reid',0)->get();
+        //炒货导航部分
+        $chaohuodir=$this->getType(8)->typedir;
+        $brandaiticles=$brandaiticle->where('typeid',8)->where('mid',1)->take(10)->get();
+
+        //进口零食导航
+        $jinkoulingshidir=$this->getType(9)->typedir;
+        $jinkoulingshiarticle=$brandaiticle->where('typeid',9)->where('mid',1)->take(10)->get();
+        //推荐品牌
+        $article=DB::table('archives')
+            ->join('categories', 'archives.typeid', '=', 'categories.id')
+            ->join('addonarticles', 'archives.id', '=', 'addonarticles.aid')
+            ->where('archives.mid',1)
+            ->orderBy('addonarticles.brandattch','desc')
+            ->limit(9)
+            ->get();
+        for($i=0;$i<count($article);$i++){
+            $reid=DB::table('categories')->where('typedir',$article[$i]->typedir)->value('reid');
+            $retypedir=DB::table('categories')->where('id',$reid)->value('typedir');
+            $article[$i]->retypedir=$retypedir;
+        }
+
+        $articlelists=DB::table('archives')
+            ->join('categories', 'archives.typeid', '=', 'categories.id')
+            ->join('addonarticles', 'archives.id', '=', 'addonarticles.aid')
+            ->where('archives.mid',1)
+            ->orderBy('addonarticles.brandapply','desc')
+            ->paginate(10);
+        //dd($articlelists);
+       for($i=0;$i<count($articlelists);$i++) {
+           $reid = DB::table('categories')->where('typedir', $articlelists[$i]->typedir)->value('reid');
+           $retypedir = DB::table('categories')->where('id', $reid)->value('typedir');
+           $articlelists[$i]->retypedir = $retypedir;
+       }
+        return view('frontend.paihangbang',compact(
+            'article',
+            'articlelists',
+            'navs',
+            'navstopdir',
+            'typelinks',
+            'chaohuodir',
+            'brandaiticles',
+            'jinkoulingshidir',
+            'jinkoulingshiarticle'
+        ));
+    }
+
+
 }

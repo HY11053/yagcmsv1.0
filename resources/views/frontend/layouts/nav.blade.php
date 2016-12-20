@@ -26,10 +26,10 @@
                 <div class="search_tab">
                     <ul>
                         <li class="cur">找商机</li>
-                        <li><a href="#" target="_blank">5万以下</a></li>
-                        <li><a href="#" target="_blank">5-10万</a></li>
-                        <li><a href="#" target="_blank">10-20万</a></li>
-                        <li><a href="#" target="_blank">20-50万</a></li>
+                        <li><a href="/search/all_1_5_0.shtml" target="_blank">5万以下</a></li>
+                        <li><a href="/search/all_5_10_0.shtml" target="_blank">5-10万</a></li>
+                        <li><a href="/search/all_10_20_0.shtml" target="_blank">10-20万</a></li>
+                        <li><a href="/search/all_20_50_0.shtml" target="_blank">20-50万</a></li>
                     </ul>
                 </div>
                 <div class="search_box">
@@ -45,16 +45,16 @@
             <div class="quick_btn">
                 <ul>
                     <li>
-                        <a href="#"><i class="icon1"></i><span class="tit">排行榜</span></a>
+                        <a href="/paihangbang"><i class="icon1"></i><span class="tit">排行榜</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon2"></i><span class="tit">项目搜索</span></a>
+                        <a href="/search"><i class="icon2"></i><span class="tit">项目搜索</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon3"></i><span class="tit">品牌大全</span></a>
+                        <a href="/lsbrand"><i class="icon3"></i><span class="tit">品牌大全</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon4"></i><span class="tit">加盟问答</span></a>
+                        <a href="/ask"><i class="icon4"></i><span class="tit">加盟问答</span></a>
                     </li>
                 </ul>
             </div>
