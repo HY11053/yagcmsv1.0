@@ -72,3 +72,8 @@ Route::get('paihangbang','Frontend\FrontendController@getPaihangbang');
 Route::get('search/city/{id}','Search\searchController@getSearchCity')->where(['id'=>'[0-9]+']);
 Route::get('search/{br}.shtml','Search\searchController@getSearch')->where(['br'=>'[a-z_0-9]+'])->name('searchs');
 Route::post('search/post','Search\searchController@postsearch');
+//问答路由
+Route::get('ask/lists','Ask\AskController@getAsklists');
+Route::get('ask/add','Ask\AskController@addAsklists');
+Route::post('ask/store','Ask\AskController@askStore');
+
