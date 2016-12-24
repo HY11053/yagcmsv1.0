@@ -76,4 +76,6 @@ Route::post('search/post','Search\searchController@postsearch');
 Route::get('ask/lists','Ask\AskController@getAsklists');
 Route::get('ask/add','Ask\AskController@addAsklists');
 Route::post('ask/store','Ask\AskController@askStore');
+Route::get('ask','Ask\AskController@indexAsklists');
+Route::get('ask/{id}.shtml','Ask\AskController@infosAsklists')->where(['id'=>'[0-9]+']);
 
