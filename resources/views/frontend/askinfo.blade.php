@@ -5,6 +5,7 @@
 	<title>问答</title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="/frontend/css/news.css"/>
 	<link rel="stylesheet" type="text/css" href="/frontend/css/ask.css"/>
@@ -19,7 +20,7 @@
 <!--header 结束-->
 
 <div class="bn1190"><a href="#" target="_blank"><img src="/frontend/images/temp/bn5.jpg" alt=""/></a></div>
-<div class="path">当前位置：<a href="#">首页</a> &gt; <a href="#">零食行业开店问答</a></div>
+<div class="path">当前位置：<a href="/">首页</a> &gt; <a href="/ask">零食行业开店问答</a></div>
 
 <!--主体开始-->
 <div class="main clearfix">
@@ -54,9 +55,30 @@
 									<!-- 文章评论 -->
 									<div class="aw-mod">
 										<div class="mod-head common-head">
-											<h2>0 个评论</h2>
+											<h2>{{$thisAskInfoscomitscount}} 个回答</h2>
+										</div>
+										@foreach($thisAskInfoscomits as $thisAskInfoscomit)
+										<div class="aw-item">
+											<div class="mod-pic">
+												<!-- 用户头像 -->
+												<a class="aw-user-img aw-border-radius-5" href="" ><img src="http://wenda.wecenter.com/uploads/avatar/000/02/85/55_avatar_mid.jpg" alt=""></a>
+												<!-- end 用户头像 -->
+											</div>
+												<!-- 评论内容 -->
+												<div class="markitup-box">
+													{{$thisAskInfoscomit->contents}}
+												</div>
+												<!-- end 评论内容 -->
+
+												<!-- 社交操作 -->
+												<div class="meta_clearfix">
+													<span class="text-color-999 pull-right">2016-12-09</span>
+												</div>
+												<!-- end 社交操作 -->
+
 										</div>
 
+									@endforeach
 
 
 									</div>
@@ -66,6 +88,9 @@
 									<div class="aw-mod aw-article-replay-box">
 										<a name="answer_form"></a>
 										<p align="center">要回复文章请先<a href="http://wenda.golaravel.com/login/">登录</a>或<a href="http://wenda.golaravel.com/account/register/">注册</a></p>
+										<textarea rows="2" cols="110" style="border-radius: 5px;" id="comcontents"></textarea>
+										<input type="hidden" id="hiddenid" value="{{$thisAskInfos->id}}"/>
+										<button type="button" class="btn btn-danger" style="float: right;" id="callbF_sub">提交</button>
 									</div>
 									<!-- end 回复编辑器 -->
 								</div>
@@ -158,6 +183,42 @@
 <!--主体结束-->
 
 @include('frontend.layouts.footer')
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
 
+		$("#callbF_sub").click(function(){
+
+			var result = $("#comcontents").val();
+			var id=$("#hiddenid").val();
+
+			if( result ){
+				$.ajax({
+					//提交数据的类型 POST GET
+					type:"POST",
+					//提交的网址
+					url:"/ask/commitstore",
+					//提交的数据
+					data:{"contents":result,"id":id},
+					//返回数据的格式
+					datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text".
+
+					success:function (response, stutas, xhr) {
+						alert(response);
+						$("#callbF_sub").attr("disabled","disabled");
+					}
+				});
+			} else{
+				alert("内容输入不合法！！")
+			}
+
+		})
+
+	})
+</script>
 </body>
 </html>

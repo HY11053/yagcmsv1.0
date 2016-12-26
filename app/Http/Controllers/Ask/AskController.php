@@ -39,6 +39,8 @@ class AskController extends Controller
     //栏目部分
         preg_match('/^ask\/([0-9]+)\.shtml$/',$request->path(),$matches);
         $thisAskInfos=DB::table('asks')->where('id',$matches[1])->first();
+        $thisAskInfoscomits=DB::table('answers')->where('id',$matches[1])->get();
+        $thisAskInfoscomitscount=DB::table('answers')->where('id',$matches[1])->count();
         $categorys=new category;
         $brandaiticle= new Archive;
         //品牌导航部分
@@ -52,7 +54,7 @@ class AskController extends Controller
         //进口零食导航
         $jinkoulingshidir=$this->getType(9)->typedir;
         $jinkoulingshiarticle=$brandaiticle->where('typeid',9)->where('mid',1)->take(10)->get();
-        return view('frontend.askinfo',compact('navs','navstopdir','typelinks','chaohuodir','brandaiticles','jinkoulingshidir','jinkoulingshiarticle','thisAskInfos'));
+        return view('frontend.askinfo',compact('navs','navstopdir','typelinks','chaohuodir','brandaiticles','jinkoulingshidir','jinkoulingshiarticle','thisAskInfos','thisAskInfoscomits','thisAskInfoscomitscount'));
 
     }
 
@@ -77,6 +79,14 @@ class AskController extends Controller
           ['title'=>$title,'description'=>$description,'title'=>$title,'time'=>date('Y-m-d H:i:s',time()),'viewnum'=>rand(100,200),'ip'=>$request->ip()]
         );
 
+    }
+    function commitStore(Request $request){
+        if(!empty($request->input('contents')) && !empty($request->input('id'))){
+            DB::table('answers')->insert(
+                ['id'=>$request->input('id'),'contents'=>$request->input('contents')]
+            );
+        }
+        dd($request->all());
     }
     /*
         *

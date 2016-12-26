@@ -376,6 +376,8 @@ class FrontendController extends Controller
         $brandnews=$this->getFlagarticle(3,'',12);
         //友情链接
         $flinks=$flink->where('ischeck',1)->get();
+        //生意百科
+        $askrows=DB::table('asks')->where('answernum','>',0)->orderBy('answernum','desc')->limit(3)->get();
         return view('frontend.index',
             compact(
             'typelinks',
@@ -406,7 +408,8 @@ class FrontendController extends Controller
             'seeallbrands',
             'seeallbrand2s',
             'scrollchaohuobrand3',
-            'flinks'
+            'flinks',
+            'askrows'
             )
         );
 

@@ -414,18 +414,12 @@
                 <h2>生意百科</h2>
                 <div class="con_sec">
                     <ul>
-                        <li class="one bor">
-                            <span><a href="#" title="加盟一家奶茶店大概需要多少钱呢?" target="_blank">加盟一家奶茶店大概需要多少钱呢?</a></span>
-                            <p>想加盟一家奶茶店，加盟什么品牌好呢?大概需要多少费用呢?</p>
+						@foreach($askrows as $index=>$askrow)
+                        <li class="@if($index==0) one @elseif ($index==1) two @else three @endif bor">
+                            <span><a href="/ask/{{$askrow->id}}.shtml" title="{{$askrow->title}}" target="_blank">{{$askrow->title}}</a></span>
+                            <p> {{str_limit(trim(strip_tags($askrow->description)),$limit =64,$end = '...')}}</p>
                         </li>
-                        <li class="two bor">
-                            <span><a href="#" title="开两元店怎么样?利润高吗?" target="_blank">开两元店怎么样?利润高吗?</a></span>
-                            <p>我周边有很多厂子，想开一家两元店，主要的针对群体就是厂里的职工，不知道</p>
-                        </li>
-                        <li class="three bor">
-                            <span><a href="#" title="在北京开一个美甲店需要投资多少钱?" target="_blank">在北京开一个美甲店需要投资多少钱?</a></span>
-                            <p>美甲在当下非常流行，自己以前在美甲店实习过两年，有丰富的经验，想在北京</p>
-                        </li>
+                        @endforeach
                      </ul>
                      <textarea class="question" onclick="this.value = '';" name="question">#说出您创业疑问，10分钟将得到答案#</textarea>
                      <input type="button" class="wd_submit" value="提问">
