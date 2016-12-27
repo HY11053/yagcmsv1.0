@@ -10,12 +10,10 @@ use App\Model\category;
 
 class CategoryController extends Controller
 {
-    //
-    //category show
-    public function __construct(){
-        $this->middleware('auth');
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
     }
-
     /*
      * 栏目列表管理
      *

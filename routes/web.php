@@ -78,7 +78,7 @@ Route::get('ask/add','Ask\AskController@addAsklists');
 Route::post('ask/store','Ask\AskController@askStore');
 Route::get('ask','Ask\AskController@indexAsklists');
 Route::get('ask/{id}.shtml','Ask\AskController@infosAsklists')->where(['id'=>'[0-9]+']);
-Route::post('ask/commitstore','Ask\AskController@commitStore');
+Route::post('ask/commitstore','Ask\AskStoreController@commitStore');
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 {

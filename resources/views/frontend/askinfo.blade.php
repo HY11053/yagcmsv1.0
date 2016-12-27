@@ -87,10 +87,13 @@
 									<!-- 回复编辑器 -->
 									<div class="aw-mod aw-article-replay-box">
 										<a name="answer_form"></a>
-										<p align="center">要回复文章请先<a href="http://wenda.golaravel.com/login/">登录</a>或<a href="http://wenda.golaravel.com/account/register/">注册</a></p>
+										@if(is_null(auth('web')->user()))
+											<p align="center">要回复文章请先<a href="/login">登录</a>或<a href="/register">注册</a></p>
+										@else
 										<textarea rows="2" cols="110" style="border-radius: 5px;" id="comcontents"></textarea>
 										<input type="hidden" id="hiddenid" value="{{$thisAskInfos->id}}"/>
 										<button type="button" class="btn btn-danger" style="float: right;" id="callbF_sub">提交</button>
+										@endif
 									</div>
 									<!-- end 回复编辑器 -->
 								</div>

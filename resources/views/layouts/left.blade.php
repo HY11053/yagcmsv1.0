@@ -12,8 +12,8 @@
                 <img src="/asset/production/images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>admin</h2>
+                <span>welcome</span>
+                <h2>{{auth('admin')->user()->name}}</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->

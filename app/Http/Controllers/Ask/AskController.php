@@ -8,6 +8,7 @@ use App\Model\Archive;
 use App\Http\Requests;
 use DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth;
 
 class AskController extends Controller
 {
@@ -72,6 +73,7 @@ class AskController extends Controller
         return view('ask.askadd');
     }
     function askStore(Request $request){
+        $this->middleware('auth.admin:admin');
         $title=$request->input('asktitle');
         $description=$request->input('textareacontent');
         //dd();
@@ -80,14 +82,7 @@ class AskController extends Controller
         );
 
     }
-    function commitStore(Request $request){
-        if(!empty($request->input('contents')) && !empty($request->input('id'))){
-            DB::table('answers')->insert(
-                ['id'=>$request->input('id'),'contents'=>$request->input('contents')]
-            );
-        }
-        dd($request->all());
-    }
+    
     /*
         *
         * 栏目信息获取

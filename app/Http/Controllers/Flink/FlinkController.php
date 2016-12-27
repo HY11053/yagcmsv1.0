@@ -11,7 +11,10 @@ use App\Model\flink;
 class FlinkController extends Controller
 {
     //
-
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
+    }
     function getIndex(){
 
         $links=new flink;

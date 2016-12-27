@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Article;
-
+use App\Model\Admin;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\category;
@@ -13,20 +12,23 @@ use App\Model\addonarticle;
 use App\Http\Controllers\Auth;
 
 
-
 class ArticleController extends Controller
 {
     //
 
-    public function __construct(){
+    /*public function __construct(){
         $this->middleware('auth');
 
+    }*/
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
     }
     
     function getIndex(Request $request){
         $archives=new Archive;
         $categorys=new category;
-        $user=new User;
+        $user=new Admin;
         $Article_data=$archives->orderBy('id', 'desc')->paginate(20);
 
         foreach ($Article_data as $Article_data_new){
@@ -50,6 +52,7 @@ class ArticleController extends Controller
             $Article_data_new['topdir']=$typetopdir;
 
         }
+
 
         //var_dump($request->user()->id);
 
@@ -367,7 +370,7 @@ class ArticleController extends Controller
 
         $archives=new Archive;
         $categorys=new category;
-        $user=new User;
+        $user=new Admin;
 
         $Article_data=$archives->where('ismake','=',0)->orderBy('id', 'desc')->paginate(20);
 
@@ -390,7 +393,7 @@ class ArticleController extends Controller
 
         $archives=new Archive;
         $categorys=new category;
-        $user=new User;
+        $user=new Admin;
 
         $Article_data=$archives->where('dutyadmin','=',$request->user()->id)->orderBy('id', 'desc')->paginate(20);
 
@@ -413,7 +416,7 @@ class ArticleController extends Controller
 
         $archives=new Archive;
         $categorys=new category;
-        $user=new User;
+        $user=new Admin;
 
         $Article_data=$archives->onlyTrashed()->orderBy('id', 'desc')->paginate(20);
 
