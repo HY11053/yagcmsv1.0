@@ -111,8 +111,8 @@
                                                     <input type="checkbox" class="flat" name="table_records">
                                                 </td>
                                                 <td class=" ">{{ $asklist->id }}</td>
-                                                <td class=" ">{{ $asklist->title }} </td>
-                                                <td class=" ">{{ $asklist->description }} </td>
+                                                <td class=" ">{{str_limit(trim(strip_tags($asklist->title)),$limit = 25,$end = '...')}} </td>
+                                                <td class=" ">{{str_limit(trim(strip_tags($asklist->description)),$limit = 54,$end = '...')}}</td>
                                                 <td class=" ">{{ $asklist->time }}</td>
                                                 <td class=" ">{{ $asklist->ip }}</td>
                                                 <td class=" ">{{$asklist->viewnum}}</td>

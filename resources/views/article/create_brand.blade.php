@@ -375,36 +375,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <!--new addend-->
-                                    <li>
-                                        <div class="block">
-                                            <div class="tags">
-                                                <a href="" class="tag">
-                                                    <span>文章内容部分</span>
-                                                </a>
-                                            </div>
-                                            <div class="block_content">
-                                                <h2 class="title">
-                                                    <a>文档内容处理部分</a>
-                                                </h2>
-                                                <div class="byline">
-                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                </div>
-
-
-                                                @include('layouts.summernote')
-
-
-                                                <div style="display: none"><textarea  name="textareacontent" id="lawsContent"></textarea></div>
-                                                <div class="form-group">
-                                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-
-                                                        <button type="submit" class="btn btn-success">提交文档</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @include('layouts.brandedit')
                                 </ul>
                             </form>
                         </div>
@@ -539,51 +510,7 @@
 <script src="../asset/plugins/summernote/summernote.min.js"></script>
 <script src="../asset/plugins/summernote/lang/summernote-zh-CN.js"></script>
 
-<script>
-
-
-
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#summernote').summernote({
-            height: 300,
-            lang : 'zh-CN',
-            callbacks: {
-                onImageUpload: function(files) {
-                    //上传图片到服务器，使用了formData对象，至于兼容性...据说对低版本IE不太友好
-                    var formData = new FormData();
-                    formData.append('file',files[0]);
-                    $.ajax({
-                        type: 'POST',
-                        url : '/upload/images/thread',//后台文件上传接口
-                        data : formData,
-                        enctype: 'multipart/form-data',
-                        processData : false,
-                        contentType : false,
-                        success: function(filename) {
-                            var file_path ='/images/thread/'+ filename;
-                            console.log(file_path);
-                            $('#summernote').summernote("insertImage", file_path);
-                        }
-                    });
-                },
-                onChange: function(contents, $editable) {
-                    // console.log('onChange:', contents, $editable);
-                    $("#lawsContent").val(contents)
-                    console.log($("#lawsContent").val())
-                },
-            }
-        });
-
-
-
-    })
-
-</script>
+<script src="../js/summernote.js"></script>
 <!-- /Custom Notification -->
 
 <!-- /Custom Notification -->

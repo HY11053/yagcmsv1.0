@@ -7,11 +7,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\category;
 use App\Model\Archive;
-use App\User;
+//use App\Model\Admin;
 use App\Model\addonarticle;
 use App\Http\Controllers\Auth;
-
-
 class ArticleController extends Controller
 {
     //
@@ -30,22 +28,16 @@ class ArticleController extends Controller
         $categorys=new category;
         $user=new Admin;
         $Article_data=$archives->orderBy('id', 'desc')->paginate(20);
-
         foreach ($Article_data as $Article_data_new){
-
             $typename=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typename');
             $typedir=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typedir');
             $typetopid=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('reid');
             if($typetopid){
-
                 $typetopdir= substr($categorys->where('id','=',"$typetopid")->value('typedir'),0,strlen($categorys->where('id','=',"$typetopid")->value('typedir'))-1);
-
-
             }else{
                 $typetopdir='';
             }
             $dutyname=$user->where('id','=',$Article_data_new['dutyadmin'])->value('name');
-
             $Article_data_new['typename']=$typename;
             $Article_data_new['dutyname']=$dutyname;
             $Article_data_new['typedir']=$typedir;
@@ -91,7 +83,7 @@ class ArticleController extends Controller
      *
      */
     function postCreate(Request $request){
-
+        //dd($request->all());
         if(!empty($request->title) && !empty($request->typeid)){
             $archives=new Archive;
             $addonarticle=new addonarticle;
@@ -113,7 +105,8 @@ class ArticleController extends Controller
             $archives->description=$request->description;
             $archives->ismake=$request->iCheck;
             $archives->flag=$flags;
-            $archives->dutyadmin=$request->user()->id;
+            //$archives->dutyadmin=$request->user()->id;
+            $archives->dutyadmin=auth('admin')->user()->id;
             $archives->senddate=time();
             $archives->pubdate=time();
             //$addonarticle->aid=$count+1;
@@ -139,6 +132,12 @@ class ArticleController extends Controller
                 $addonarticle->brandgarea=$request->brandgarea;
                 $addonarticle->brandduty=$request->brandduty;
                 $addonarticle->imageslitpic=$request->imagespic;
+                $addonarticle->jmxq=$request->textareacontent1;
+                $addonarticle->jmys=$request->textareacontent2;
+                $addonarticle->jmlc=$request->textareacontent3;
+                $addonarticle->jmdt=$request->textareacontent4;
+                $addonarticle->jmwd=$request->textareacontent5;
+
             }
             //上传缩略图处理
             if(!empty($request->image)){
@@ -197,6 +196,11 @@ class ArticleController extends Controller
         $article=new Archive;
         $addonarticle=new addonarticle;
         $addonarticle_data=$addonarticle->where('aid','=',$inputid)->value('body');
+        $addonarticle_jmxq=$addonarticle->where('aid','=',$inputid)->value('jmxq');
+        $addonarticle_jmys=$addonarticle->where('aid','=',$inputid)->value('jmys');
+        $addonarticle_jmlc=$addonarticle->where('aid','=',$inputid)->value('jmlc');
+        $addonarticle_jmdt=$addonarticle->where('aid','=',$inputid)->value('jmdt');
+        $addonarticle_jmwd=$addonarticle->where('aid','=',$inputid)->value('jmwd');
          //品牌数据获取
         $addonarticle_brand=$addonarticle->where('aid','=',$inputid)->get();
         $addonarticle_tag=$addonarticle->where('aid','=',$inputid)->value('tag');
@@ -226,7 +230,12 @@ class ArticleController extends Controller
                 'addonarticle_coordinates',
                 'article_flag',
                 'addonarticle_brand',
-                'pics'
+                'pics',
+                'addonarticle_jmxq',
+                'addonarticle_jmdt',
+                'addonarticle_jmlc',
+                'addonarticle_jmys',
+                'addonarticle_jmwd'
             ));
 
         }
@@ -262,6 +271,7 @@ class ArticleController extends Controller
             $archives->where('id', $request->articelid)->update(
                 [
                     'title'=>$request->title ,
+                    'ismake'=>$request->iCheck,
                     'shorttitle'=>$request->shorttitle,
                     'keywords'=>$request->keywords,
                     'typeid'=>$request->typeid,
@@ -301,7 +311,12 @@ class ArticleController extends Controller
                         'brandgroup'=>$request->brandgroup,
                         'brandgarea'=>$request->brandgarea,
                         'brandduty'=>$request->brandduty,
-                        'imageslitpic'=>$request->imagespic.$litpics
+                        'imageslitpic'=>$request->imagespic.$litpics,
+                        'jmxq'=>$request->textareacontent1,
+                        'jmys'=>$request->textareacontent2,
+                        'jmlc'=>$request->textareacontent3,
+                        'jmdt'=>$request->textareacontent4,
+                        'jmwd'=>$request->textareacontent5,
                     ]
                 );
 
@@ -390,44 +405,31 @@ class ArticleController extends Controller
     }
 
     function getOwnship(Request $request){
-
         $archives=new Archive;
         $categorys=new category;
         $user=new Admin;
-
-        $Article_data=$archives->where('dutyadmin','=',$request->user()->id)->orderBy('id', 'desc')->paginate(20);
-
+        $Article_data=$archives->where('dutyadmin','=',auth('admin')->user()->id)->orderBy('id', 'desc')->paginate(20);
         foreach ($Article_data as $Article_data_new){
-
             $typename=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typename');
-            $dutyname=$user->where('id','=',$request->user()->id)->value('name');
-
+            $dutyname=$user->where('id','=',auth('admin')->user()->id)->value('name');
             $Article_data_new['typename']=$typename;
             $Article_data_new['dutyname']=$dutyname;
-
         }
 
         return view('article.ownship',compact('Article_data'));
 
-
     }
 
     function getRecycle(Request $request){
-
         $archives=new Archive;
         $categorys=new category;
         $user=new Admin;
-
         $Article_data=$archives->onlyTrashed()->orderBy('id', 'desc')->paginate(20);
-
         foreach ($Article_data as $Article_data_new){
-
             $typename=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typename');
             $dutyname=$user->where('id','=',$Article_data_new['dutyadmin'])->value('name');
             $Article_data_new['typename']=$typename;
             $Article_data_new['dutyname']=$dutyname;
-
-
         }
 
         return view('article.recycle',compact('Article_data'));
@@ -436,13 +438,9 @@ class ArticleController extends Controller
 
     function uploadPics(Request $request){
         if(!empty($request['input-image'])){
-
             if(!$request->hasFile('input-image')){
-
                 exit('上传文件为空！');
-
             }else{
-
                 $file = $request->file('input-image');
                 //判断文件上传过程中是否出错
                 $allowed_extensions = ["png", "jpg", "gif","jpeg"];

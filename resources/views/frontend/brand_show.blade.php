@@ -123,7 +123,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 							<li class="js_join_1 cur"><a href="javascript:void(0)">加盟详情</a></li>
 							<li class="js_join_2"><a href="javascript:void(0)">加盟优势</a></li>
 							<li class="js_join_3"><a href="javascript:void(0)">加盟流程</a></li>
-							<li class="js_join_4"><a href="javascript:void(0)">品牌动态</a></li>
+							<li class="js_join_4"><a href="javascript:void(0)">加盟政策</a></li>
 							<li class="js_join_5"><a href="javascript:void(0)">加盟问答</a></li>
 						</ul>
 					</div>
@@ -134,7 +134,35 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
 				<div class="join_cont">
 					{!!$data_article->body!!}
+					<div class="join_tit" id="js_join_1"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟详情</em></span> </div>
+					<div class="join_intro">
+						{!!$data_article->jmxq!!}
+					</div>
+					<div class="join_tit" id="js_join_2"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟优势</em></span> </div>
+					<div class="join_intro">
+						{!!$data_article->jmys!!}
+					</div>
+					<div class="join_tit" id="js_join_3"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟流程</em></span> </div>
+					<div class="join_intro">
+						{!!$data_article->jmlc!!}
+					</div>
+					<div class="join_tit" id="js_join_4"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟政策</em></span> </div>
+					<div class="join_intro">
+						{!!$data_article->jmdt!!}
+					</div>
+					<div class="join_tit" id="js_join_5"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟问答</em></span> </div>
+					<div class="join_intro">
+						{!!$data_article->jmwd!!}
+					</div>
+					<div class="join_tit" > <span class="tit">{{$data_archive->shorttitle}}<em>品牌展示</em></span> </div>
+					<div class=" join_img">
+						<ul>
+							@foreach($data_articlelitpics as $articlelitpic)
+								<li><a target="_blank" href="#"><img src="{{$articlelitpic}}" alt="{{$data_archive->shorttitle}}"/></a></li>
+							@endforeach
 
+						</ul>
+					</div>
 					<div class="cy_img"><img src="/frontend/images/cye_03.jpg" alt="加盟步骤"/> </div>
 					
 					<!--用户留言 开始-->

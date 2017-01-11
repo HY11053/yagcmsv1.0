@@ -115,7 +115,7 @@
                                         <td>{{ date('Y-m-d',$article_data->senddate) }}</td>
                                         <td>{{ $article_data->dutyname }}</td>
                                         <td>
-                                            <a href="{{ $article_data->topdir }}{{ $article_data->typedir }}{{ $article_data->id }}.shtml" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> 预览 </a>
+                                            <a href="{{ $article_data->topdir }}{{ $article_data->typedir }}{{ $article_data->id }}.shtml" target="_blank" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> 预览 </a>
                                             <a href="/article/edit/id?id={{ $article_data->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a>
                                             <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-toggle="modal" data-target="#myModa1d{{$article_data->id}}"><i class="fa fa-trash-o"></i> 删除 </a>
                                             <!-- Modal -->

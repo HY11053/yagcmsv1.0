@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>文章添加| </title>
+    <title>文章编辑| </title>
     <!-- Bootstrap -->
     <link href="/asset/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -165,7 +165,13 @@
                                                             <input type="text" name="country" id="country" value="{{ $addonarticle_coordinates }}" class="form-control col-md-10"  placeholder="填写地区名称即可"/>
                                                         </div>
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12">文章状态</label>
+                                                        <div class="radio col-md-4 col-sm-9 col-xs-12">
+                                                            <input type="radio" class="flat" name="iCheck" @if($article_datas->ismake) checked  @endif value="1"> 已审核
+                                                            <input type="radio" class="flat" name="iCheck" @if(!$article_datas->ismake) checked  @endif value="0"> 未审核
+                                                        </div>
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label class="control-label col-md-2 col-sm-3 col-xs-12">文章所属栏目</label>
@@ -259,184 +265,118 @@
                                     <!--newsssssend-->
                                     <!--new add-->
                                     @foreach($addonarticle_brand as $brand)
-                                    <li>
-                                        <div class="block">
-                                            <div class="tags">
-                                                <a href="" class="tag">
-                                                    <span>品牌信息添加</span>
-                                                </a>
-                                            </div>
-                                            <div class="block_content">
-                                                <h2 class="title">
-                                                    <a>品牌信息添加部分</a>
-                                                </h2>
-                                                |<!--litpic-->
-                                                <div class="byline">
-                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
+                                        <li>
+                                            <div class="block">
+                                                <div class="tags">
+                                                    <a href="" class="tag">
+                                                        <span>品牌信息添加</span>
+                                                    </a>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">品牌名称</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandname" id="brandname" class="form-control col-md-10" value="{{ $brand->brandname }}" placeholder="品牌名称"/>
-                                                        </div>
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a>品牌信息添加部分</a>
+                                                    </h2>
+                                                    |<!--litpic-->
+                                                    <div class="byline">
+                                                        <span>13 hours ago</span> by <a>Jane Smith</a>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">品牌名称</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandname" id="brandname" class="form-control col-md-10" value="{{ $brand->brandname }}" placeholder="品牌名称"/>
+                                                            </div>
+                                                        </div>
 
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">成立时间</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandtime" id="brandtime" class="form-control col-md-10"  value="{{ $brand->brandtime }}" placeholder="1970-1-1"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">成立时间</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandtime" id="brandtime" class="form-control col-md-10"  value="{{ $brand->brandtime }}" placeholder="1970-1-1"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">品牌发源地</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandorigin" id="brandorigin" class="form-control col-md-10" value="{{ $brand->brandorigin }}" placeholder="品牌发源地"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">品牌发源地</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandorigin" id="brandorigin" class="form-control col-md-10" value="{{ $brand->brandorigin }}" placeholder="品牌发源地"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">门店总数</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandnum" id="brandnum" class="form-control col-md-10" value="{{ $brand->brandnum }}" placeholder="门店总数"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">门店总数</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandnum" id="brandnum" class="form-control col-md-10" value="{{ $brand->brandnum }}" placeholder="门店总数"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟费用</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandpay" id="brandpay" class="form-control col-md-10" value="{{ $brand->brandpay }}" placeholder="加盟费用"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟费用</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandpay" id="brandpay" class="form-control col-md-10" value="{{ $brand->brandpay }}" placeholder="加盟费用"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟区域</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brabdaea" id="brabdaea" class="form-control col-md-10" value="{{ $brand->brabdaea }}" placeholder="加盟区域"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟区域</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brabdaea" id="brabdaea" class="form-control col-md-10" value="{{ $brand->brabdaea }}" placeholder="加盟区域"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">经营范围</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandmap" id="brandmap" class="form-control col-md-10" value="{{ $brand->brandmap }}"  placeholder="经营范围"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">经营范围</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandmap" id="brandmap" class="form-control col-md-10" value="{{ $brand->brandmap }}"  placeholder="经营范围"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟人群</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandperson" id="brandperson" class="form-control col-md-10" value="{{ $brand->brandperson }}" placeholder="加盟人群"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟人群</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandperson" id="brandperson" class="form-control col-md-10" value="{{ $brand->brandperson }}" placeholder="加盟人群"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟意向人数</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandattch" id="brandattch" class="form-control col-md-10" value="{{$brand->brandattch}}" placeholder="加盟意向人数"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">加盟意向人数</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandattch" id="brandattch" class="form-control col-md-10" value="{{$brand->brandattch}}" placeholder="加盟意向人数"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">申请加盟人数</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandapply" id="brandapply" class="form-control col-md-10" value="{{$brand->brandapply}}" placeholder="申请加盟人数"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">申请加盟人数</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandapply" id="brandapply" class="form-control col-md-10" value="{{$brand->brandapply}}" placeholder="申请加盟人数"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">开店所需面积</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" value="{{$brand->brandchat}}" placeholder="开店所需面积"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">开店所需面积</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandchat" id="brandchat" class="form-control col-md-10" value="{{$brand->brandchat}}" placeholder="开店所需面积"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">公司名称</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandgroup" id="brandgroup" class="form-control col-md-10" value="{{$brand->brandgroup}}" placeholder="公司名称"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">公司名称</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandgroup" id="brandgroup" class="form-control col-md-10" value="{{$brand->brandgroup}}" placeholder="公司名称"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">公司地址</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandgarea" id="brandgarea" class="form-control col-md-10" value="{{$brand->brandgarea}}" placeholder="公司地址"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">公司地址</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandgarea" id="brandgarea" class="form-control col-md-10" value="{{$brand->brandgarea}}" placeholder="公司地址"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">是否区域授权</label>
-                                                        <div class="col-md-8 col-sm-9 col-xs-12">
-                                                            <input type="text" name="brandduty" id="brandduty" class="form-control col-md-10"  value="{{$brand->brandduty}}" placeholder="是否区域授权"/>
-                                                            <input type="hidden" name="mid" id="mid" class="form-control col-md-10" value="1"/>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4 col-sm-3 col-xs-12">是否区域授权</label>
+                                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                <input type="text" name="brandduty" id="brandduty" class="form-control col-md-10"  value="{{$brand->brandduty}}" placeholder="是否区域授权"/>
+                                                                <input type="hidden" name="mid" id="mid" class="form-control col-md-10" value="1"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
+
+                                                    </div>
 
                                                 </div>
-
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
                                     @endforeach
-                                    <li>
-                                        <div class="block">
-                                            <div class="tags">
-                                                <a href="" class="tag">
-                                                    <span>文章内容部分</span>
-                                                </a>
-                                            </div>
-                                            <div class="block_content">
-                                                <h2 class="title">
-                                                    <a>文档内容处理部分</a>
-                                                </h2>
-                                                <div class="byline">
-                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                </div>
-
-
-                                                <div class="wrapper wrapper-content">
-
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="ibox float-e-margins">
-
-                                                                <div class="ibox-content no-padding">
-
-                                                                    <div class="summernote" id="summernote">
-                                                                        {!! $addonarticle_data !!}
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="ibox float-e-margins">
-
-                                                                <div class="ibox-content">
-
-                                                                    <h2>
-                                                                        Summernote编辑器及文档发布使用详情
-                                                                    </h2>
-
-                                                                    <div class="alert alert-warning">
-                                                                        文档内容中图片可本地上传至自己服务器或通过外部链接插入图片，文档缩略图需手动上传，目前未做自动提取
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-
-
-
-                                                <div style="display: none"><textarea  name="textareacontent" id="lawsContent">{!! $addonarticle_data !!}</textarea></div>
-                                                <div class="form-group">
-                                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                                        <button type="submit" class="btn btn-primary">Cancel</button>
-                                                        <button type="submit" class="btn btn-success">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @include('layouts.brandedit2')
                                 </ul>
                             </form>
                         </div>
@@ -574,58 +514,7 @@
 <script src="/asset/plugins/summernote/summernote.min.js"></script>
 <script src="/asset/plugins/summernote/lang/summernote-zh-CN.js"></script>
 
-<script>
-
-
-
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#summernote').summernote({
-            height: 300,
-            lang : 'zh-CN',
-            callbacks: {
-                onImageUpload: function(files) {
-                    //上传图片到服务器，使用了formData对象，至于兼容性...据说对低版本IE不太友好
-                    var formData = new FormData();
-                    formData.append('file',files[0]);
-                    $.ajax({
-                        type: 'POST',
-                        url : '/upload/images/thread',//后台文件上传接口
-                        data : formData,
-                        enctype: 'multipart/form-data',
-                        processData : false,
-                        contentType : false,
-                        success: function(filename) {
-                            var file_path ='/images/thread/'+ filename;
-                            console.log(file_path);
-                            $('#summernote').summernote("insertImage", file_path);
-                        }
-                    });
-                },
-                onChange: function(contents, $editable) {
-                    // console.log('onChange:', contents, $editable);
-                    $("#lawsContent").val(contents)
-                    console.log($("#lawsContent").val())
-                },
-            }
-        });
-
-        function get_tags(flags) {
-            var obj_tags=document.getElementsByClassName('flat');
-            for (i=0; i<obj_tags.length;i++){
-                if(flags.indexOf(obj_tags[i].value)!= -1){
-                    obj_tags[i].setAttribute('checked','checked');
-                }
-            }
-        }
-        get_tags('{{$article_flag}}}');
-    })
-
-</script>
+<script src="/js/summernote.js"></script>
 <!-- /Custom Notification -->
 <script src="/js/fileinput.min.js"></script>
 <script src="/js/plugins/canvas-to-blob.js"></script>
@@ -654,10 +543,10 @@
         overwriteInitial: false,
         initialPreview: [
             // IMAGE DATA
-                @foreach($pics as $pic)
-            "{{$pic}}",
+            @foreach($pics as $pic)
+                    "{{$pic}}",
             // IMAGE DATA
-           @endforeach
+            @endforeach
 
 
         ],
@@ -666,7 +555,7 @@
         initialPreviewConfig: [
                 @foreach($pics as $indexnum=>$pic)
             {caption: "{{$indexnum+1}}", size: 827000, width: "120px", url: "/file-upload-batch/2", key: [ {{$indexnum+1}} ,'{{$pic}}',{{$article_datas->id}}]},
-                @endforeach
+            @endforeach
 
         ],
         purifyHtml: true, // this by default purifies HTML data for preview

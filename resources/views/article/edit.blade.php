@@ -165,6 +165,14 @@
                                                         <input type="text" name="country" id="country" value="{{ $addonarticle_coordinates }}" class="form-control col-md-10"  placeholder="填写地区名称即可"/>
                                                     </div>
                                                 </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2 col-sm-3 col-xs-12">文章状态</label>
+                                                <div class="radio col-md-4 col-sm-9 col-xs-12">
+                                                    <input type="radio" class="flat" name="iCheck" @if($article_datas->ismake) checked  @endif value="1"> 已审核
+                                                    <input type="radio" class="flat" name="iCheck" @if(!$article_datas->ismake) checked  @endif value="0"> 未审核
+                                                </div>
+
+                                            </div>
 
 
                                                 <div class="form-group">
