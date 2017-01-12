@@ -73,12 +73,15 @@ Route::get('search/city/{id}','Search\searchController@getSearchCity')->where(['
 Route::get('search/{br}.shtml','Search\searchController@getSearch')->where(['br'=>'[a-z_0-9]+'])->name('searchs');
 Route::post('search/post','Search\searchController@postsearch');
 //问答路由
-Route::get('ask/lists','Ask\AskController@getAsklists');
+Route::get('ask/lists','Ask\AskController@getAsklists')->name('ask');
 Route::get('ask/add','Ask\AskController@addAsklists');
 Route::post('ask/store','Ask\AskController@askStore');
 Route::get('ask','Ask\AskController@indexAsklists');
 Route::get('ask/{id}.shtml','Ask\AskController@infosAsklists')->where(['id'=>'[0-9]+']);
 Route::post('ask/commitstore','Ask\AskStoreController@commitStore');
+Route::get('ask/edit/{id}','Ask\AskController@getEditask')->where(['id'=>'[0-9]+']);
+Route::post('/ask/update','Ask\AskController@askUpdate');
+Route::get('ask/del/{id}','Ask\AskController@delAsk')->where(['id'=>'[0-9]+']);
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 {

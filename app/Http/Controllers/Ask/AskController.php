@@ -39,7 +39,8 @@ class AskController extends Controller
     function infosAsklists(Request $request){
     //栏目部分
         preg_match('/^ask\/([0-9]+)\.shtml$/',$request->path(),$matches);
-        $thisAskInfos=DB::table('asks')->where('id',$matches[1])->first();
+        $thisAskInfos=DB::table('asks')->where('id',$matches[1])->first()?DB::table('asks')->where('id',$matches[1])->first():abort(404);
+
         $thisAskInfoscomits=DB::table('answers')->where('id',$matches[1])->get();
         $thisAskInfoscomitscount=DB::table('answers')->where('id',$matches[1])->count();
         $categorys=new category;
@@ -72,17 +73,51 @@ class AskController extends Controller
     function addAsklists(){
         return view('ask.askadd');
     }
+    /*
+     * 问答写入
+     */
     function askStore(Request $request){
         $this->middleware('auth.admin:admin');
         $title=$request->input('asktitle');
         $description=$request->input('textareacontent');
-        //dd();
         DB::table('asks')->insert(
           ['title'=>$title,'description'=>$description,'title'=>$title,'time'=>date('Y-m-d H:i:s',time()),'viewnum'=>rand(100,200),'ip'=>$request->ip()]
         );
 
     }
-    
+    /*
+     * 问答编辑
+     */
+    function getEditask(Request $request){
+
+        $this->middleware('auth.admin:admin');
+        $title=DB::table('asks')->where('id',$request->id)->value('title');
+        $description=DB::table('asks')->where('id',$request->id)->value('description');
+        $id=$request->id;
+        return view('ask.askedit',compact('title','description','id'));
+    }
+
+    /*
+ * 问答编辑提交处理
+ */
+    function askUpdate(Request $request){
+        $this->middleware('auth.admin:admin');
+        if(!empty($request->input('textareacontent')) && !empty($request->input('id')) && !empty($request->input('asktitle'))){
+            DB::table('asks')->where('id',$request->input('id'))->update(['title'=>$request->input('asktitle'),'description'=>$request->input('textareacontent')]);
+            return redirect(route('ask'));
+        }
+
+    }
+    /*
+     * 删除问答及回答内容
+     */
+    function delAsk(Request $request){
+        $this->middleware('auth.admin:admin');
+        DB::table('asks')->where('asks.id', '=', $request->id)->delete();
+        DB::table('answers')->where('answers.id', '=', $request->id)->delete();
+        return redirect(route('ask'));
+    }
+
     /*
         *
         * 栏目信息获取

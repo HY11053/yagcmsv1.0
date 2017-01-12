@@ -116,8 +116,8 @@
                                                 <td class=" ">{{ $asklist->time }}</td>
                                                 <td class=" ">{{ $asklist->ip }}</td>
                                                 <td class=" ">{{$asklist->viewnum}}</td>
-                                                <td class="a-right a-right "><a href="/flink/edit/{{ $asklist->id }}">编辑</a></td>
-                                                <td class=" last"><a href="/flink/del/{{ $asklist->id }}">删除</a>
+                                                <td class="a-right a-right "><a href="/ask/edit/{{ $asklist->id }}">编辑</a></td>
+                                                <td class=" last"><a href="/ask/del/{{ $asklist->id }}">删除</a>
                                                 </td>
                                             </tr>
                                         @endforeach

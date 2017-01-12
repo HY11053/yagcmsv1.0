@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col" style="position: fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/profile" class="site_title"><i class="fa fa-paw"></i> <span>零食品牌CMS</span></a>
+            <a href="/admin/dash" class="site_title"><i class="fa fa-paw"></i> <span>零食品牌CMS</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -42,6 +42,8 @@
                             <li><a href="/ask/add">问题提问</a></li>
                             <li><a href="#">百度主动提交</a></li>
                             <li><a href="#">XML地图生成</a></li>
+                            <li><a href="#">电话提交管理</a></li>
+                            <li><a href="#">移动端地图生成</a></li>
 
                         </ul>
                     </li>

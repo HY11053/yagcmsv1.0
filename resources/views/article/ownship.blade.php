@@ -89,7 +89,7 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 1%">id</th>
-                                        <th style="width: 15%">文章标题</th>
+                                        <th style="width: 17%">文章标题</th>
                                         <th style="width: 15%">所属栏目</th>
                                         <th style="width: 10%">更新时间</th>
                                         <th style="width: 5%">点击</th>
@@ -97,7 +97,7 @@
 
                                         <th style="width: 10%">发布时间</th>
                                         <th style="width: 8%">发布人</th>
-                                        <th style="width: 20%">编辑</th>
+                                        <th style="width: 16%">编辑</th>
                                     </tr>
                                     </thead>
                                     <tbody>
