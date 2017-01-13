@@ -27,7 +27,7 @@ class ArticleController extends Controller
         $archives=new Archive;
         $categorys=new category;
         $user=new Admin;
-        $Article_data=$archives->orderBy('id', 'desc')->paginate(20);
+        $Article_data=$archives->orderBy('id', 'desc')->paginate(30);
         foreach ($Article_data as $Article_data_new){
             $typename=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typename');
             $typedir=$categorys->where('id','=',"{$Article_data_new['typeid']}")->value('typedir');
@@ -74,7 +74,14 @@ class ArticleController extends Controller
         return view('article.create_brand',compact('data'));
 
     }
-
+    /*
+     * 加盟费用文档创建
+     */
+    function getJmfcreate(){
+        $category=new category;
+        $data=$category->all();
+        return view('article.create_jmf',compact('data'));
+    }
     /*
      *
      * 文档发布提交处理
@@ -83,7 +90,7 @@ class ArticleController extends Controller
      *
      */
     function postCreate(Request $request){
-        //dd($request->all());
+       // dd($request->all());
         if(!empty($request->title) && !empty($request->typeid)){
             $archives=new Archive;
             $addonarticle=new addonarticle;
@@ -138,7 +145,16 @@ class ArticleController extends Controller
                 $addonarticle->jmdt=$request->textareacontent4;
                 $addonarticle->jmwd=$request->textareacontent5;
 
+            }elseif($request->mid==2){
+                $archives->mid=2;
+                $addonarticle->brandname=$request->brandname;
+                $addonarticle->brandtime=$request->brandtime;
+                $addonarticle->brandorigin=$request->brandorigin;
+                $addonarticle->brandnum=$request->brandnum;
+                $addonarticle->brandpay=$request->brandpay;
+                $addonarticle->brabdaea=$request->brabdaea;
             }
+
             //上传缩略图处理
             if(!empty($request->image)){
 
@@ -214,15 +230,7 @@ class ArticleController extends Controller
         $pics=array_filter(explode(',',$litpics));
         //dd($pics);
 
-        if( $article_mid!==1){
-            return view('article.edit',compact(
-                'data','article_data',
-                'addonarticle_data',
-                'inputid','addonarticle_tag',
-                'addonarticle_coordinates',
-                'article_flag'
-            ));
-        }else{
+        if( $article_mid==1){
             return view('article.brand_edit',compact(
                 'data','article_data',
                 'addonarticle_data',
@@ -237,6 +245,24 @@ class ArticleController extends Controller
                 'addonarticle_jmys',
                 'addonarticle_jmwd'
             ));
+        }elseif ($article_mid==2){
+            return view('article.editjmf',compact(
+                'data','article_data',
+                'addonarticle_data',
+                'inputid','addonarticle_tag',
+                'addonarticle_coordinates',
+                'addonarticle_brand',
+                'article_flag'
+            ));
+        }else{
+            return view('article.edit',compact(
+                'data','article_data',
+                'addonarticle_data',
+                'inputid','addonarticle_tag',
+                'addonarticle_coordinates',
+                'article_flag'
+            ));
+
 
         }
 
@@ -282,21 +308,14 @@ class ArticleController extends Controller
 
             );
 
-            if($article_mid!=1){
-                $addonarticle->where('aid', $request->articelid)->update(
-                    [
-                        'typeid'=>$request->typeid,
-                        'body'=>$request->textareacontent,
-                        'tag'=>$request->tags,
-                        'coordinates'=>$request->country]
-                );
-            }else{
+            if($article_mid==1){
                 $litpics=$addonarticle->where('aid','=',$request->articelid)->value('imageslitpic');
                 $addonarticle->where('aid', $request->articelid)->update(
                     [
                         'typeid'=>$request->typeid,
                         'body'=>$request->textareacontent,
                         'tag'=>$request->tags,
+                        'coordinates'=>$request->country,
                         'brandname'=>$request->brandname,
                         'brandtime'=>$request->brandtime,
                         'brandorigin'=>$request->brandorigin,
@@ -319,7 +338,29 @@ class ArticleController extends Controller
                         'jmwd'=>$request->textareacontent5,
                     ]
                 );
-
+            }elseif ($article_mid==2){
+                $addonarticle->where('aid', $request->articelid)->update(
+                    [
+                        'typeid'=>$request->typeid,
+                        'body'=>$request->textareacontent,
+                        'tag'=>$request->tags,
+                        'coordinates'=>$request->country,
+                        'brandname'=>$request->brandname,
+                        'brandtime'=>$request->brandtime,
+                        'brandorigin'=>$request->brandorigin,
+                        'brandnum'=>$request->brandnum,
+                        'brandpay'=>$request->brandpay,
+                        'brabdaea'=>$request->brabdaea
+                    ]
+                );
+            }else{
+                $addonarticle->where('aid', $request->articelid)->update(
+                    [
+                        'typeid'=>$request->typeid,
+                        'body'=>$request->textareacontent,
+                        'tag'=>$request->tags,
+                        'coordinates'=>$request->country]
+                );
             }
 
 

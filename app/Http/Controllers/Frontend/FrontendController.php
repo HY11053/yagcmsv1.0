@@ -153,8 +153,6 @@ class FrontendController extends Controller
 
     function getFeiyongcategorys(Request $request)
     {
-
-
         $categories = new category;
         $articles = new Archive;
         $addonarticle = new addonarticle();        ;
@@ -162,9 +160,7 @@ class FrontendController extends Controller
         if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
-
-            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 1)->paginate(10);
-
+            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 2)->paginate(10);
                 for ($i = 0; $i < count($articlelists); $i++) {
                     $articlelists[$i]->typedir = $this_typeinfo->typeid;
                     $articlelists[$i]->brandpay = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandpay');
@@ -226,8 +222,6 @@ class FrontendController extends Controller
      * 区别普通文档和品牌文档
      */
     function getArticles(Request $request){
-
-
         //判断当前访问路径是否通过验证
         if(preg_match('/([\w]+)\/([\d]+)\.shtml/', $request->path(), $matches)){
             $article=new addonarticle;
@@ -241,8 +235,7 @@ class FrontendController extends Controller
             //判断当前访问栏目是否存在
             if($typeid){
 
-                $data_article=$article->where('aid',$matches[2])->where('typeid', "$typeid")->first();
-
+                $data_article=$article->where('aid',$matches[2])->where('typeid', "$typeid")->first();                
                 $data_archive=$archives->where('id',$matches[2])->where('typeid', "$typeid")->first();
                 $tjarticles=$this->getFlagarticle(1,'',10,0,10,0);
                 $htarticles=$this->getFlagarticle($typeid,'h',1,0,1,1);
@@ -257,6 +250,9 @@ class FrontendController extends Controller
                         $data_articlelitpics=array_filter(explode(',',$data_articlelitpic));
 
                         return view('frontend.brand_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
+                    }elseif ($data_archive->mid ==2){
+                        return view('frontend.jmf_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
+
                     }else{
 
                         return view('frontend.news_show',compact('data_article','data_archive','typelinks','retypedir','tjarticles','htarticles','hotbrands'));

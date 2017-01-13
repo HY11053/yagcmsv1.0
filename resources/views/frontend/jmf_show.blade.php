@@ -2,87 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
-<title>加盟费内容</title>
+<title>{{$data_article->title}}</title>
 <link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="/frontend/css/news.css"/>
 <script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
 <script type="text/javascript" src="/frontend/js/jquery.SuperSlide.2.1.1.js"></script>
 <script type="text/javascript" src="/frontend/js/index.js"></script>
 </head>
-
 <body>
-<!--header 开始-->
-<div class="header">
-	<div class="top">
-		<div class="inner">
-			<div class="top_l">您好，欢迎访问零食加盟网！</div>
-			<div class="top_r">
-				<div class="tel">7*24小时免费直拨 400-618-1717</div>
-				<div class="add_wx" id="js_add_wx"> <img src="/frontend/images/wx_link.jpg" width="76" height="22" alt="官方微信"/>
-					<div class="wx_drop_down"> <img src="/frontend/images/wx_qrcode.png" alt="微信二维码"/> </div>
-				</div>
-				<div class="add_wb">
-					<iframe scrolling="no" allowtransparency="true" marginwidth="0" marginheight="0" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&amp;width=63&amp;height=24&amp;uid=3083675110&amp;style=1&amp;btn=light&amp;dpc=1" frameborder="0" height="24" width="63"></iframe>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="header_box_wrap">
-		<div class="header_box">
-			<div class="logo"><a href="/" target="_blank"><img src="/frontend/images/logo.jpg" alt="零食加盟网"/></a></div>
-			<!--搜索 开始-->
-			<div class="search">
-				<div class="search_tab">
-					<ul>
-						<li class="cur">找商机</li>
-						<li><a href="#" target="_blank">5万以下</a></li>
-						<li><a href="#" target="_blank">5-10万</a></li>
-						<li><a href="#" target="_blank">10-20万</a></li>
-						<li><a href="#" target="_blank">20-50万</a></li>
-					</ul>
-				</div>
-				<div class="search_box">
-					<form action="/search/" method="get">
-						<input type="text" onblur="if (this.value == '') {this.value = this.attributes['def'].value;this.className='search_input';}" onfocus="if (this.value == this.attributes['def'].value) {this.value='';this.className='search_input1';}" def="想找什么项目？" class="search_input" value="想找什么项目？" name="search">
-						<input type="submit" class="search_btn" value="搜索">
-					</form>
-				</div>
-			</div>
-			<!--搜索 结束--> 
-			
-			<!--快速链接 开始-->
-			<div class="quick_btn">
-				<ul>
-					<li> <a href="#"><i class="icon1"></i><span class="tit">排行榜</span></a> </li>
-					<li> <a href="#"><i class="icon2"></i><span class="tit">项目搜索</span></a> </li>
-					<li> <a href="#"><i class="icon3"></i><span class="tit">品牌大全</span></a> </li>
-					<li> <a href="#"><i class="icon4"></i><span class="tit">加盟问答</span></a> </li>
-				</ul>
-			</div>
-			<!--快速链接 结束--> 
-		</div>
-	</div>
-	
-	<!--导航 开始-->
-	<div class="nav">
-		<div class="inner">
-			<ul class="nav_list">
-				<li class="cur"><a href="#" target="_blank">首页</a></li>
-				<li><a href="#" target="_blank">零售店品牌</a></li>
-				<li><a href="#" target="_blank">零售行业资讯</a></li>
-				<li><a href="#" target="_blank">加盟费用</a></li>
-				<li><a href="#" target="_blank">行业展会</a></li>
-				<li><a href="#" target="_blank">问答</a></li>
-				<li><a href="#" target="_blank">干果店</a></li>
-				<li><a href="#" target="_blank">炒货店</a></li>
-				<li><a href="#" target="_blank">进口零食店</a></li>
-				<li><a href="#" target="_blank">进货批发</a></li>
-				<li><a href="#" target="_blank">城市</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<!--导航 结束--> 
+@include('frontend.layouts.nav')
 </div>
 <!--header 结束-->
 
@@ -91,18 +19,19 @@
 <!--主体开始-->
 <div class="main clearfix"> 
 	<!--头部开始-->
+
 	<div class="brand_top">
 		<div class="brand_left">
 			<div class="brand_img"> <a href="#"><img src="/frontend/images/temp/jim_money-logo.png" width="157" height="114" alt=""/></a> </div>
 			<div class="brand_jianjie">
-				<div class="tit">苏太太食品加盟费 <span class="pice">￥16.66万元以上</span></div>
+				<div class="tit">{{$data_article->brandname}}加盟费 <span class="pice">￥16.66万元以上</span></div>
 				<div class="detail">
 					<ul>
-						<li>设备费：<span>1.5万元</span></li>
-						<li>首批进货费：<span>6万元</span> </li>
-						<li> 广告宣传费：<span>0.4万元</span></li>
-						<li>水电杂费：<span>1200元</span> </li>
-						<li> 流动资金：<span>4万元 </span></li>
+						<li>设备费：<span>{{$data_article->brandtime}}</span></li>
+						<li>首批进货费：<span>{{$data_article->brandorigin}}</span> </li>
+						<li> 广告宣传费：<span>{{$data_article->brandnum}}</span></li>
+						<li>水电杂费：<span>{{$data_article->brandpay}}</span> </li>
+						<li> 流动资金：<span>{{$data_article->brabdaea}} </span></li>
 						<li>总投资费：<span>16.66万元以上</span></li>
 					</ul>
 				</div>
@@ -122,43 +51,9 @@
 		<!--左边内容开始-->
 		<div class="news_center">
 			<div class="join_cont">
-				<div class="join_tit"> <span class="tit">苏太太食品品牌简介</span> </div>
-				<div class="join_intro">
-					<p style="text-indent: 2em;"> “人怕入错行”，否则即使有通天的能力也只是无谓的浪费时间。那么，现在什么行业前景好？休闲食品行业很不错。休闲食品行业市场需求大、发展前景好，而且投资回报高、回本速度快，成为热门的投资行业，但想要获得成功，还得选择一个好的品牌才行。其中苏太太食品就是一个非常好的选择！苏太太食品品牌创立于2006年，主要经营进口食品、炒货、海鲜等各类休闲食品，多年来，始终坚持口碑传播，保证消费者的最大利益，对产品品质高标准追求，因此获得了一大批消费者的青睐。如此火爆的加盟市场，吸引了越来越多投资者的目光，只为成功创业，实现财富梦想。如果您诚心想要开一家苏太太食品品牌店，那还等什么呢？时间就是金钱，苏太太食品期待您的加入，与你一起共谋大事，共创财富。</p>
-				</div>
-				<div class="join_tit"> <span class="tit">苏太太食品投资额度</span> </div>
-				<div class="join_intro">
-					<p>致富加盟好项目——苏太太食品，拥有优质的产品，实惠的价格，以及热情周到的服务受到了广大消费者的喜爱，也是投资比较轻松的创业道路。而且加盟苏太太食品总部会为每个加盟者提供从选址到开店盈利整个过程指导，让每个创业者少走弯路。这样有市场前景的致富加盟好项目您还在等什么呢？赶紧点击右侧的“我要加盟”来获得更多详细的项目资料！ </p>
-					<p>苏太太食品加盟支持：</p>
-					<p>1、品牌形象支持</p>
-					<p>全国统一形象支持，统一店面形象设计，统一配置产品宣传物料。</p>
-					<p>2、整店输出支持
-						性发展。 </p>
-					<p>统一合理的零售指导价和统一的全国供货价格，保障市场有序良</p>
-					<p>3、免费培训支持</p>
-					<p>公司根据具体情况不定期应投资者、店长及店员的要求为其提供专业化、系统化的培训，不断提高门店的经营水平和管理能力，专业的营运指导，使门店管理轻松简单。</p>
-					<p>4、物流配送支持</p>
-					<p>公司提供物流配送服务，保证能快捷、高效地实现货品流通，满足市场一线的要货需求。</p>
-					<p>5、媒体广告支持</p>
-					<p>全国性的媒体广告投放，涵盖电视、报纸、广播、专业杂志、网络门户、户外广告等多种形式，以及公司不定期的全国统一性或区域性的优质宣传策划活动。</p>
-					<p>6、市场运营支持</p>
-					<p>总部经过多年的探索，专业性已经获得了市场的认可，在运营方面也有自己独特的方法，并为加盟店提供这方面的支持，助力门店的良好发展。</p>
-					<p>7、跟踪服务支持</p>
-					<p>总部定期对加盟店寻访，确保其品牌、产品、服务与总部保持一致，并对加盟店的日常运营及管理提供专业性终端信息系统支持及指导，助加盟商实现信息化的管理模式。</p>
-					<p>8、选址装修支持</p>
-					<p>总部经过严格的调查，在店址上给苏太太食品加盟商以指导与评估，从而使该店符合苏太太食品的选址标准。苏太太食品招商总部提供标准化的店面，装修设计团队根据店面结构进行布局，如平面布局图、效果图、施工图、装修指导、其它店面装修参考。</p>
-					<p>9、区域保护支持</p>
-					<p>奖励与惩罚相结合，坚决杜绝一切窜货、倒货现象，建立严格的市场保护及区域保护制度。从而有力地保障了每个经营者都能平安无事地在自己地盘上享受赚钱的快乐。</p>
-					<p>苏太太食品加盟条件：</p>
-					<p>1、年满18周岁以上，具有合法的加盟资格。</p>
-					<p>2、认同并接受苏太太食品的经营理念和品牌价值。</p>
-					<p>3、必须具备经济实力，团队架构整齐。</p>
-					<p>4、拥有固定并且符合公司要求的经营场所。</p>
-					<p>5、执行和遵守苏太太食品总部的各项经营管理体系。</p>
-					<p>6、具有良好的商业信誉、商业道德。</p>
-					<p>7、能够全身心的投入到经营中，且具有一定的市场敏锐力及营销经验。</p>
-				</div>
-				
+				{{$data_article->body}}
+			</div>
+
 				<!--用户留言 开始-->
 				<div class="gbook">
 					<div class="hd">

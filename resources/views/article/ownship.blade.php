@@ -76,11 +76,10 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-
-                                <p class="col-md-4 col-md-offset-8">文档添加选择
+                                <p class="col-md-6 col-md-offset-6">文档添加选择
                                     <a href="/article/create" class="btn btn-danger btn-group-lg"><i class="fa fa-tag"></i> 添加文档 </a>
                                     <a href="/article/createbrand" class="btn btn-success btn-group-lg"><i class="fa fa-tags"></i> 添加品牌文档 </a>
-
+                                    <a href="/article/createjmf" class="btn btn-danger btn-group-lg"><i class="fa fa-tags"></i> 添加加盟费文档 </a>
                                 </p>
                                 <hr/>
 
