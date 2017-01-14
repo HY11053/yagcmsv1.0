@@ -104,7 +104,7 @@
     	<div class="hd"></div>
         <div class="bd">
             <ul>
-                <li><a href="about.html" target="_blank">关于我们</a></li>
+                <li><a href="about.blade.php" target="_blank">关于我们</a></li>
                 <li><a href="law.html" target="_blank">法律声明</a></li>
                 <li class="cur"><a href="map.html" target="_blank">网站地图</a></li>
                 <li><a href="contact.html" target="_blank">联系我们</a></li>
