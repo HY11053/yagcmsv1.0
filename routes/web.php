@@ -97,3 +97,13 @@ Route::post('ask/commitstore','Ask\AskStoreController@commitStore');
 Route::get('ask/edit/{id}','Ask\AskController@getEditask')->where(['id'=>'[0-9]+']);
 Route::post('/ask/update','Ask\AskController@askUpdate');
 Route::get('ask/del/{id}','Ask\AskController@delAsk')->where(['id'=>'[0-9]+']);
+//关于我们
+Route::get('about',function (){
+    return view('frontend.about');
+});
+Route::get('contact',function (){
+    return view('frontend.contact');
+});
+Route::get('law',function (){
+    return view('frontend.law');
+});
