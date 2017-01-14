@@ -110,7 +110,7 @@
 >>顶级栏目  
 <br/>
 >>>etc...
-
+![](https://github.com/HY11053/yagcmsv1.0/blob/master/public/gitimg/category20170114174521.png)  
 
 ####站点目录支持二级栏目分类，文档编辑界面分为普通文档编辑、品牌文档编辑及加盟费用文档编辑
 ####品牌文档编辑界面支持多图文上传
