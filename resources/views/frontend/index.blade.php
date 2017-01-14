@@ -461,7 +461,7 @@
 					</div>
 				</div>
 				<div class="left_two">
-					<h4>创业风向标</h4>
+					<h4>零食采购信息</h4>
 					<dl>
 						@foreach($brandnews as $newindex=>$brandnew)
 						<dd><span>{{date('Y-m-d',$brandnew->pubdate)}}</span><i class="@if($newindex+1 <4) ye @endif">{{$newindex+1}}.</i><a href="{{$brandnew->typedir}}{{$brandnew->id}}.shtml" target="_blank" title="{{$brandnew->title}}">{{$brandnew->title}}</a></dd>

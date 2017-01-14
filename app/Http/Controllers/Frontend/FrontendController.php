@@ -30,7 +30,7 @@ class FrontendController extends Controller
 
         if(preg_match('/([\w]+)\/([\w]+)/', $request->path(), $matches)){
             $categories=new category;
-            $typelinks=$categories->where('reid',0)->get();
+            $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
             $typeid=$categories->where('typedir',"/$matches[2]/")->value('id');
             $articles=$this->getArclist($typeid);
             $typeinfo=$this->getSinglcategory($typeid);
@@ -58,7 +58,7 @@ class FrontendController extends Controller
         $categories=new category;
         $articles=new Archive;
         $addonarticle=new addonarticle();
-        $typelinks=$categories->where('reid',0)->get();
+        $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
         if(preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
@@ -99,7 +99,7 @@ class FrontendController extends Controller
     function getNewscategorys(Request $request){
         if(preg_match('/([\w]+)/', $request->path(), $matches)) {
             $categories=new category;
-            $typelinks=$categories->where('reid',0)->get();
+            $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
             $typeid=$categories->where('typedir',"/$matches[1]/")->value('id');
             $articles = $this->getArclist($typeid);
             $typeinfo = $this->getSinglcategory($typeid);
@@ -156,7 +156,7 @@ class FrontendController extends Controller
         $categories = new category;
         $articles = new Archive;
         $addonarticle = new addonarticle();        ;
-        $typelinks=$categories->where('reid',0)->get();
+        $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
         if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
@@ -184,16 +184,14 @@ class FrontendController extends Controller
 
     function getChaohuocategorys(Request $request)
     {
-
-
         $categories = new category;
         $articles = new Archive;
         $addonarticle = new addonarticle();
-        $typelinks=$categories->where('reid',0)->get();
+        $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
         if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
-
+            //dd($this_typeinfo);
             $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 1)->paginate(10);
             $article=$articles->where('typeid',$this_typeinfo->id)->where('mid',1)->where('flag','c')->take(18)->get();
             for ($i=0; $i<count($article);$i++){
@@ -227,7 +225,7 @@ class FrontendController extends Controller
             $article=new addonarticle;
             $archives=new Archive;
             $categorys=new category;
-            $typelinks=$categorys->where('reid',0)->get();
+            $typelinks=$categorys->where('reid',0)->orderBy('sortrank','desc')->get();
             $typeid=$categorys->where('typedir',"/$matches[1]/")->value('id');
             $retypeid=$categorys->where('id',$typeid)->value('reid');
             $retypedir=$categorys->where('id',$retypeid)->value('typedir');
@@ -281,7 +279,7 @@ class FrontendController extends Controller
  */
     function getNewsarticle(Request $request){
         $categorys=new category;
-        $typelinks=$categorys->where('reid',0)->get();
+        $typelinks=$categorys->where('reid',0)->orderBy('sortrank','desc')->get();
         if(preg_match('/([\w]+)\/([\d]+)\.shtml/', $request->path(), $matches)){
             $article=new addonarticle;
             $archives=new Archive;
@@ -330,7 +328,7 @@ class FrontendController extends Controller
         //品牌导航部分
         $navs=$categorys->where('reid','1')->orderBy('id','asc')->get();
         $navstopdir=substr($categorys->where('id','1')->value('typedir'),0,strlen($categorys->where('id','1')->value('typedir'))-1);
-        $typelinks=$categorys->where('reid',0)->get();
+        $typelinks=$categorys->where('reid',0)->orderBy('sortrank','desc')->get();
         //炒货导航部分
         $chaohuodir=$this->getType(8)->typedir;
         $brandaiticles=$brandaiticle->where('typeid',8)->where('mid',1)->take(10)->get();
@@ -369,7 +367,7 @@ class FrontendController extends Controller
         //人群解读
         $tagnews=$this->getFlagarticle(3,'',6);
         //创业风向标
-        $brandnews=$this->getFlagarticle(3,'',12);
+        $brandnews=$this->getFlagarticle(10,'',5,0,0);
         //友情链接
         $flinks=$flink->where('ischeck',1)->get();
         //生意百科
@@ -436,7 +434,7 @@ class FrontendController extends Controller
         $brandaddon=new addonarticle;
 
         $sontype=$categorys->where('reid',$typeid)->get();
-
+        //dd($sontype[0]->id);
         if(count($sontype)>0){
 
             foreach($sontype as $sontypes){
@@ -521,7 +519,7 @@ class FrontendController extends Controller
         //品牌导航部分
         $navs=$categorys->where('reid','1')->orderBy('id','asc')->get();
         $navstopdir=substr($categorys->where('id','1')->value('typedir'),0,strlen($categorys->where('id','1')->value('typedir'))-1);
-        $typelinks=$categorys->where('reid',0)->get();
+        $typelinks=$categorys->where('reid',0)->orderBy('sortrank','desc')->get();
         //炒货导航部分
         $chaohuodir=$this->getType(8)->typedir;
         $brandaiticles=$brandaiticle->where('typeid',8)->where('mid',1)->take(10)->get();

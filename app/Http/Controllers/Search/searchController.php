@@ -90,7 +90,7 @@ class searchController extends Controller
 
 
             }
-            return view('frontend.search',compact('articleinfos','typelinks'));
+            return view('frontend.search',compact('articleinfos','typelinks','matches'));
         }
 
 

@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="/frontend/js/index.js"></script>
 </head>
 <body>
+<!--header 开始-->
 @include('frontend.layouts.nav')
 </div>
 <!--header 结束-->
@@ -20,7 +21,6 @@
 
 <!--主体开始-->
 <div class="main clearfix">
-
 	<!--分类筛选 开始-->
 	<div class="cate_sort">
 		<dl>
@@ -78,7 +78,7 @@
 		</dl>
 	</div>
 	<!--分类筛选 结束-->
-	
+
 
 	
 	<!--左边 开始-->
@@ -88,7 +88,7 @@
 				<a class="cur" href="#">默认排序</a>
 				<a href="#">金额排序<i class="up"></i><!--<i class="down"></i>--></a>
 			</div>
-			<div class="order_item_r">共找到<span>8696</span>个品牌加盟项目</div>
+			<div class="order_item_r">共找到<span>{{$articlelists->total()}}</span>个品牌加盟项目</div>
 		</div>
 		
 		<!--列表 开始-->

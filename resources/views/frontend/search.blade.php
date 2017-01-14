@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>搜索结果页</title>
+<title>{{$matches[3]}}万~{{$matches[4]}}万零食店加盟品牌</title>
 <link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="/frontend/css/news.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
@@ -17,14 +17,11 @@
 </div>
 <!--header 结束-->
 <div class="bn1190"><a href="#" target="_blank"><img src="/frontend/images/temp/bn5.jpg" alt=""/></a></div>
-
-<div class="path">当前位置：<a href="#">首页</a> &gt; <a href="#">零售行业资讯</a></div>
-
 <!--主体开始-->
 <div class="main clearfix">
 	<!--左边 开始-->
 	<div class="w910">
-		<div class="search_tips">为您找到<span>73</span>条符合<span>“甜品”</span>的品牌查询结果</div>
+		<div class="search_tips">为您找到<span>{{$articleinfos->total()}}</span>条符合<span>“{{$matches[3]}}万~{{$matches[4]}}万零食店加盟品牌”</span>的品牌查询结果</div>
 		
 		<!--列表 开始-->
 

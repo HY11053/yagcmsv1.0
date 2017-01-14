@@ -15,13 +15,13 @@
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="javascript:;"> 用户中心</a></li>
                         <li>
-                            <a href="javascript:;">
+                            <a href="/admin/dash">
                                 <span class="badge bg-red pull-right">50%</span>
                                 <span>Settings</span>
                             </a>
                         </li>
-                        <li><a href="javascript:;">帮助</a></li>
-                        <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                        <li><a href="https://github.com/HY11053/yagcmsv1.0" target="_blank">帮助</a></li>
+                        <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                     </ul>
                 </li>
 

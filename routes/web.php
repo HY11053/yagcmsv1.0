@@ -10,10 +10,18 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
+//首页路由
 Route::get('/', 'Frontend\FrontendController@getIndex');
-
+//登录路由
 Auth::routes();
+Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
+{
+    $router->get('login', 'LoginController@showLoginForm')->name('admin.login');
+    $router->post('login', 'LoginController@login');
+    $router->post('logout', 'LoginController@logout');
+
+    $router->get('dash', 'DashboardController@index');
+});
 
 Route::get('/home', 'HomeController@index');
 Route::get('/demo', 'Demo\TestController@index');
@@ -61,14 +69,19 @@ Route::get('jinkoulingshi','Frontend\FrontendController@getChaohuocategorys');
 Route::get('ganguodian','Frontend\FrontendController@getChaohuocategorys');
 Route::get('lingshijinhuo','Frontend\FrontendController@getNewscategorys');
 Route::get('chaohuodian/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
+Route::get('ganguodian/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('jinkoulingshi/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('jiamengfei','Frontend\FrontendController@getFeiyongcategorys');
 Route::get('jiamengfei/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('zhanhui','Frontend\FrontendController@getNewscategorys');
+Route::get('citys','Frontend\FrontendController@getNewscategorys');
 Route::get('news','Frontend\FrontendController@getNewscategorys');
 Route::get('lsbrand/{catename}/','Frontend\FrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+']);
 Route::get('lsbrand/{catename}/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+', 'catename' => '[a-z 0-9]+']);
 Route::get('news/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+Route::get('zhanhui/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+Route::get('lingshijinhuo/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+Route::get('citys/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
 Route::get('paihangbang','Frontend\FrontendController@getPaihangbang');
 //搜索路由
 Route::get('search/city/{id}','Search\searchController@getSearchCity')->where(['id'=>'[0-9]+']);
@@ -84,12 +97,3 @@ Route::post('ask/commitstore','Ask\AskStoreController@commitStore');
 Route::get('ask/edit/{id}','Ask\AskController@getEditask')->where(['id'=>'[0-9]+']);
 Route::post('/ask/update','Ask\AskController@askUpdate');
 Route::get('ask/del/{id}','Ask\AskController@delAsk')->where(['id'=>'[0-9]+']);
-
-Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
-{
-    $router->get('login', 'LoginController@showLoginForm')->name('admin.login');
-    $router->post('login', 'LoginController@login');
-    $router->post('logout', 'LoginController@logout');
-
-    $router->get('dash', 'DashboardController@index');
-});

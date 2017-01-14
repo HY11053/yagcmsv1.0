@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<title>{{$data_article->title}}</title>
-<link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="/frontend/css/news.css"/>
-<script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
-<script type="text/javascript" src="/frontend/js/jquery.SuperSlide.2.1.1.js"></script>
-<script type="text/javascript" src="/frontend/js/index.js"></script>
+	<meta charset="utf-8">
+	<title>{{$data_archive->title}}</title>
+	<link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="/frontend/css/news.css"/>
+	<script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/frontend/js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="/frontend/js/index.js"></script>
 </head>
 <body>
 @include('frontend.layouts.nav')
 </div>
 <!--header 结束-->
 
-<div class="bn1190"><a href="#" target="_blank"><img src="/frontend/images/temp/bn5.jpg" alt=""/></a></div>
+
+<div class="bn1190"><a href="#" target="_blank"><img src="images/temp/bn5.jpg" alt=""/></a></div>
 <div class="path">当前位置：<a href="#">首页</a> &gt; <a href="#">零售行业资讯</a></div>
 <!--主体开始-->
-<div class="main clearfix"> 
+<div class="main clearfix">
 	<!--头部开始-->
-
 	<div class="brand_top">
 		<div class="brand_left">
-			<div class="brand_img"> <a href="#"><img src="/frontend/images/temp/jim_money-logo.png" width="157" height="114" alt=""/></a> </div>
+			<div class="brand_img"> <a href="#"><img src="{{$data_archive->litpic}}" width="157" height="114" alt=""/></a> </div>
 			<div class="brand_jianjie">
 				<div class="tit">{{$data_article->brandname}}加盟费 <span class="pice">￥16.66万元以上</span></div>
 				<div class="detail">
@@ -46,15 +46,13 @@
 		</div>
 	</div>
 	<!--头部结束-->
-	
-	<div class="center_list clearfix"> 
+
+	<div class="center_list clearfix">
 		<!--左边内容开始-->
 		<div class="news_center">
 			<div class="join_cont">
-				{{$data_article->body}}
-			</div>
-
-				<!--用户留言 开始-->
+				{!! $data_article->body !!}
+						<!--用户留言 开始-->
 				<div class="gbook">
 					<div class="hd">
 						<span class="tit">我要咨询</span>
@@ -72,11 +70,11 @@
 									<div class="check_msg_tit">请填写留言或根据意向选择下列快捷留言</div>
 									<div class="check_msg_bd">
 										<ul>
-										   <li><a href="javascript:;" class="no" target="_self">我加盟后，您们还会提供哪些服务？</a></li>
-										   <li><a href="javascript:;" class="no" target="_self">有兴趣开一个店，请寄资料或给我打电话。</a></li>
-										   <li><a href="javascript:;" class="no" target="_self">请问我这个地方有加盟商了吗？</a></li>
-										   <li><a href="javascript:;" class="no" target="_self">请将详细投资方案和资料寄给本人。</a></li>
-										   <li><a href="javascript:;" class="no" target="_self">初步打算加盟贵公司，请寄资料。</a></li>
+											<li><a href="javascript:;" class="no" target="_self">我加盟后，您们还会提供哪些服务？</a></li>
+											<li><a href="javascript:;" class="no" target="_self">有兴趣开一个店，请寄资料或给我打电话。</a></li>
+											<li><a href="javascript:;" class="no" target="_self">请问我这个地方有加盟商了吗？</a></li>
+											<li><a href="javascript:;" class="no" target="_self">请将详细投资方案和资料寄给本人。</a></li>
+											<li><a href="javascript:;" class="no" target="_self">初步打算加盟贵公司，请寄资料。</a></li>
 										</ul>
 									</div>
 								</div>
@@ -90,8 +88,8 @@
 				<!--用户留言 结束-->
 			</div>
 		</div>
-		<!--左边内容结束--> 
-		
+		<!--左边内容结束-->
+
 		<!--右边内容开始-->
 		<div class="new_right">
 			<!--加盟费计算器 开始-->
@@ -100,32 +98,32 @@
 					<div class="tit">加盟费计算器</div>
 				</div>
 				<form>
-				<div class="bd">
-					<ul>
-						<li><span class="txt">品牌加盟费：</span><input type="text" class="input_bk"  value="10000" id="num1"><em>元</em></li>
-						<li><span class="txt">品牌管理费：</span><input type="text" class="input_bk" value="10000" id="num2"><em>元</em><i>（按年计算）</i></li>
-						<li><span class="txt">首批进货款：</span><input type="text" class="input_bk" value="10000" id="num3"><em>元</em></li>
-						<li><span class="txt">店面租金：</span><input type="text" class="input_bk" value="10000" id="num4"><em>元</em><i>（按月计算）</i></li>
-						<li><span class="txt">店面装修：</span><input type="text" class="input_bk" value="5000" id="num5"><em>元</em></li>
-						<li><span class="txt">店面装修：</span><input type="text" class="input_bk" value="1200" id="num6"><em>元</em></li>
-						<li><span class="txt">固定资产：</span><input type="text" class="input_bk" value="5000" id="num7"><em>元</em></li>
-						<li><span class="txt">员工数量：</span><input type="text" class="input_bk" value="2" id="num8"><em>人</em><i>（按月计算）</i></li>
-						<li><span class="txt">平均工资：</span><input type="text" class="input_bk" value="3000" id="num9"><em>元</em></li>
-						<li><span class="txt">开业费用：</span><input type="text" class="input_bk" value="10000" id="num10"><em>元</em></li>
-						<li><span class="txt">运营费用：</span><input type="text" class="input_bk" value="10000" id="num11"><em>元</em></li>
-						<li><p class="price">总共：<span class="total" id="total_num"></span>元</p></li>
-						<li><p class="btn"><input class="total_btn" value="计算"><input class="reset_btn" type="reset" value="重置"></p></li>
-					</ul>
-				</div>
+					<div class="bd">
+						<ul>
+							<li><span class="txt">品牌加盟费：</span><input type="text" class="input_bk"  value="10000" id="num1"><em>元</em></li>
+							<li><span class="txt">品牌管理费：</span><input type="text" class="input_bk" value="10000" id="num2"><em>元</em><i>（按年计算）</i></li>
+							<li><span class="txt">首批进货款：</span><input type="text" class="input_bk" value="10000" id="num3"><em>元</em></li>
+							<li><span class="txt">店面租金：</span><input type="text" class="input_bk" value="10000" id="num4"><em>元</em><i>（按月计算）</i></li>
+							<li><span class="txt">店面装修：</span><input type="text" class="input_bk" value="5000" id="num5"><em>元</em></li>
+							<li><span class="txt">店面装修：</span><input type="text" class="input_bk" value="1200" id="num6"><em>元</em></li>
+							<li><span class="txt">固定资产：</span><input type="text" class="input_bk" value="5000" id="num7"><em>元</em></li>
+							<li><span class="txt">员工数量：</span><input type="text" class="input_bk" value="2" id="num8"><em>人</em><i>（按月计算）</i></li>
+							<li><span class="txt">平均工资：</span><input type="text" class="input_bk" value="3000" id="num9"><em>元</em></li>
+							<li><span class="txt">开业费用：</span><input type="text" class="input_bk" value="10000" id="num10"><em>元</em></li>
+							<li><span class="txt">运营费用：</span><input type="text" class="input_bk" value="10000" id="num11"><em>元</em></li>
+							<li><p class="price">总共：<span class="total" id="total_num"></span>元</p></li>
+							<li><p class="btn"><input class="total_btn" value="计算"><input class="reset_btn" type="reset" value="重置"></p></li>
+						</ul>
+					</div>
 				</form>
 			</div>
 			<!--加盟费计算器 结束-->
-			
+
 			<!--品牌信息 开始-->
 			<div class="new_bt">
 				<h3> <i></i> 品牌：<strong>小胖子快餐</strong> </h3>
 				<div class="bts">
-					<div class="pingpai_img"><a href="#" target="_blank"><img src="/frontend/images/temp/jim_money-logo.png"  alt=""/></a></div>
+					<div class="pingpai_img"><a href="#" target="_blank"><img src="images/temp/jim_money-logo.png"  alt=""/></a></div>
 					<div class=" pingpai">
 						<p>公司名称：<span>苏州市苏太太食品有限公司</span></p>
 						<p>公司地址：<span>苏州市相城区望亭镇项路巨庄</span></p>
@@ -136,7 +134,7 @@
 				</div>
 			</div>
 			<!--品牌信息 结束-->
-			
+
 			<!--品牌新闻 开始-->
 			<div class="new_bt">
 				<h3><i></i>品牌新闻</h3>
@@ -157,14 +155,14 @@
 				</div>
 			</div>
 			<!--品牌新闻 结束-->
-			
+
 		</div>
-		
-		<!--右边内容结束--> 
-		
+
+		<!--右边内容结束-->
+
 	</div>
 </div>
-<!--主体结束--> 
+<!--主体结束-->
 
 <!--footer开始-->
 <div class="footer">
@@ -174,8 +172,8 @@
 		<p>Copyright © 2015 www.lingshijm.com Corporation, All Rights Reserved 上海佐赛网络科技有限公司 版权所有</p>
 		<p>沪ICP备14037163号-32</p>
 	</div>
-	<div class="cert"><img src="/frontend/images/cert.jpg" alt="信用保障"/></div>
-	<div class="wx"><img src="/frontend/images/logo_wx.jpg" alt="微信"/></div>
+	<div class="cert"><img src="images/cert.jpg" alt="信用保障"/></div>
+	<div class="wx"><img src="images/logo_wx.jpg" alt="微信"/></div>
 </div>
 <!--footer结束-->
 
