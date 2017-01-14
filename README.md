@@ -65,6 +65,7 @@
 <br/>
 >>>——关键词监测
 <br/>
+![](https://github.com/HY11053/yagcmsv1.0/blob/master/public/gitimg/20170114214444.png)  
 
 >>顶级栏目
 
