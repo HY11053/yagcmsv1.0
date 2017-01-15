@@ -35,7 +35,7 @@ Route::get('category/createcategory/{id?}','Category\CategoryController@getCreat
 Route::get('category/deletecategory/{id?}','Category\CategoryController@getDeletecategory');
 Route::get('category/edit/{id}','Category\CategoryController@categoryEdit');
 //文档处理路由
-Route::get('article/lists','Article\ArticleController@getIndex');
+Route::get('article/lists','Article\ArticleController@getIndex')->name('adminIndex');
 Route::get('article/create','Article\ArticleController@getCreate');
 Route::get('article/createbrand','Article\ArticleController@getBrandcreate');
 Route::get('article/createjmf','Article\ArticleController@getJmfcreate');
@@ -43,11 +43,14 @@ Route::post('article/update','Article\ArticleController@postUpdate');
 Route::get('article/edit/{id}','Article\ArticleController@getEdtarticle');
 Route::post('article/create','Article\ArticleController@postCreate');
 Route::post('article/delete','Article\ArticleController@postDelete');
+Route::post('article/destory','Article\ArticleController@postDestory');
 Route::get('article/noverify','Article\ArticleController@getNoverify');
+Route::get('article/restore/{id}','Article\ArticleController@getRestore');
 Route::get('article/ownship','Article\ArticleController@getOwnship');
 Route::get('article/recycle','Article\ArticleController@getRecycle');
 Route::post('article/uploads','Article\ArticleController@uploadPics');
 Route::post('file-upload-batch/2','Article\ArticleController@deletePics');
+
 
 //友情链接
 Route::get('flink','Flink\FlinkController@getIndex');
@@ -61,6 +64,7 @@ Route::get('sysconfig','Sysconfig\sysconfigController@getConfig');
 //图集处理路由
 
 Route::post('litpicscollects','LitpicscollectsController@litpicsCollects');
+Route::get('sitemapcreate','SimeMap\SiteMapController@getSitemap');
 
 //前台路由
 Route::get('lsbrand','Frontend\FrontendController@getTopcategorys');

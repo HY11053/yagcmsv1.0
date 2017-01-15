@@ -121,21 +121,22 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">删除1</h4>
+                                                            <h4 class="modal-title" id="myModalLabel">永久删除文档</h4>
                                                         </div>
                                                         <div class="modal-body" id="modal-body{{$article_data->id}}">
-                                                            是否要删除{{ $article_data->id }}-<s>{{ $article_data->title }}</s>这篇文章?
+                                                            是否要永久删除{{ $article_data->id }}-<s>{{ $article_data->title }}</s>这篇文章?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary" id="subtn{{ $article_data->id }}" onclick="ajaxdel('#subtn{{ $article_data->id }}','{{$article_data->id}}','#modal-body{{$article_data->id}}')">删除</button>
+                                                            <button type="button" class="btn btn-primary" id="subtn{{ $article_data->id }}" onclick="ajaxdestory('#subtn{{ $article_data->id }}','{{$article_data->id}}','#modal-body{{$article_data->id}}')">删除</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> 还原 </a>
-
+                                            <a href="/article/restore/id?id={{ $article_data->id }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> 还原 </a>
                                         </td>
+
+
                                     </tr>
                                     @endforeach
 
@@ -212,6 +213,27 @@
             });
 
     }
+    function ajaxdestory(nodes,id,nd){
+
+        event.stopPropagation();
+        $.ajax({
+            type: 'POST',
+            url: '/article/destory',//后台文件上传接口
+            data:{"id":id},
+            datatype: "html",
+            success:function (response, stutas, xhr) {
+                //alert();
+                $(nd).text(response);
+                $(nodes).attr("disabled","disabled");
+                setTimeout(function(){
+                    window.location.href = "/article/lists";
+                },3000);
+
+            }
+        });
+
+    }
+
 
 </script>
 </body>

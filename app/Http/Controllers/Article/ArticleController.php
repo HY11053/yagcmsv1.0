@@ -422,6 +422,22 @@ class ArticleController extends Controller
         }
 
     }
+    //文档删除，永久删除
+    function postDestory(Request $request){
+        $id=$request->id;
+        $del=Archive::withTrashed()->find($id);
+        if($del->forceDelete()){
+            echo '成功删除文档！';
+        }else{
+            echo '删除失败！当前文章已删除或不存在';
+        }
+    }
+    //还原删除文档
+    function getRestore(Request $request){
+        $id=$request->id;
+       Archive::withTrashed()->find($id)->restore();
+       return redirect()->route('adminIndex');
+    }
     function getNoverify(Request $request){
 
         $archives=new Archive;

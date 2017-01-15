@@ -21,7 +21,15 @@
                             </a>
                         </li>
                         <li><a href="https://github.com/HY11053/yagcmsv1.0" target="_blank">帮助</a></li>
-                        <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                        <li><a href="{{ url('/admin/logout') }}"
+                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right"></i> 注销登录
+                            </a></li>
+
+
+                        <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </ul>
                 </li>
 
@@ -94,3 +102,4 @@
     </div>
 </div>
 <!-- /top navigation -->
+

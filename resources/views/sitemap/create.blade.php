@@ -32,29 +32,7 @@
 
                 <!-- page content -->
         <div class="right_col" role="main">
-            简介：零食品牌CMS是基于laravel5.3框架开发的CMS系统
-            <hr/>
-            当前版本V1.0
-            <hr/>
-            运行环境信息：{{$_SERVER['SERVER_SOFTWARE']}}
-            <hr/>
-            数据库类型：{{env('DB_CONNECTION')}}
-            <hr/>
-            当前登录用户名：{{auth('admin')->user()->name}}
-            <hr/>
-            文章总数：
-            <hr/>
-            问答总数：
-            <hr/>
-            收录量：
-            <hr/>
-            当日收录：
-            <hr/>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    {{auth('admin')->user()->name}}<span class="caret"></span>
-                </a>
-            </li>
+            {{$msg}}
         </div>
         <!-- /page content -->
 
