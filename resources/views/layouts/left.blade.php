@@ -40,8 +40,8 @@
                             <li><a href="/flink/add">添加友情链接</a></li>
                             <li><a href="/ask/lists">问答管理</a></li>
                             <li><a href="/ask/add">问题提问</a></li>
-                            <li><a href="#">百度主动提交</a></li>
                             <li><a href="/sitemapcreate">XML地图生成</a></li>
+                            <li><a href="/baidusubmit">百度主动提交</a></li>
                             <li><a href="#">电话提交管理</a></li>
                             <li><a href="#">移动端地图生成</a></li>
 

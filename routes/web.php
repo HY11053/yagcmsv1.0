@@ -65,6 +65,7 @@ Route::get('sysconfig','Sysconfig\sysconfigController@getConfig');
 
 Route::post('litpicscollects','LitpicscollectsController@litpicsCollects');
 Route::get('sitemapcreate','SimeMap\SiteMapController@getSitemap');
+Route::get('baidusubmit','Sundry\BaiduSubmitController@getBaidusubmits');
 
 //前台路由
 Route::get('lsbrand','Frontend\FrontendController@getTopcategorys');

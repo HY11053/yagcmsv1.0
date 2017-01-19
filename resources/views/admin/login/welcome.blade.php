@@ -50,11 +50,7 @@
             <hr/>
             当日收录：
             <hr/>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    {{auth('admin')->user()->name}}<span class="caret"></span>
-                </a>
-            </li>
+
         </div>
         <!-- /page content -->
 
