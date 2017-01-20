@@ -11,7 +11,8 @@
 |
 */
 //首页路由
-Route::get('/', 'Frontend\FrontendController@getIndex');
+
+
 //登录路由
 Auth::routes();
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
@@ -62,12 +63,51 @@ Route::post('flink/editupdate','Flink\FlinkController@postEditupdate');
 //系统基本参数配置
 Route::get('sysconfig','Sysconfig\sysconfigController@getConfig');
 //图集处理路由
-
 Route::post('litpicscollects','LitpicscollectsController@litpicsCollects');
+//地图及电话处理
 Route::get('sitemapcreate','SimeMap\SiteMapController@getSitemap');
+Route::get('msitemapcreate','SimeMap\SiteMapController@mgetSitemap');
 Route::get('baidusubmit','Sundry\BaiduSubmitController@getBaidusubmits');
-
-//前台路由
+Route::post('/phone','phone\PhoneController@postPhoneDates');
+Route::get('/phone','phone\PhoneController@getPhoneDates');
+/*
+|--------------------------------------------------------------------------
+|
+|移动端前台处理路由
+|
+|--------------------------------------------------------------------------
+*/
+Route::group(['domain' => 'm.larcms.com'], function () {
+    Route::get('/', 'Frontend\MobileFrontendController@getIndex');
+    Route::get('lsbrand','Frontend\MobileFrontendController@getTopcategorys');
+    Route::get('chaohuodian','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('jinkoulingshi','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('ganguodian','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('lingshijinhuo','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('chaohuodian/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
+    Route::get('ganguodian/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
+    Route::get('jinkoulingshi/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
+    Route::get('jiamengfei','Frontend\MobileFrontendController@getFeiyongcategorys');
+    Route::get('jiamengfei/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
+    Route::get('zhanhui','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('citys','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('news','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('lsbrand/{catename}/','Frontend\MobileFrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+']);
+    Route::get('lsbrand/{catename}/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+', 'catename' => '[a-z 0-9]+']);
+    Route::get('news/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+    Route::get('zhanhui/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+    Route::get('lingshijinhuo/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+    Route::get('citys/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
+    Route::get('paihangbang','Frontend\MobileFrontendController@getPaihangbang');
+});
+/*
+|--------------------------------------------------------------------------
+|
+|PC端前台处理路由
+|
+|--------------------------------------------------------------------------
+*/
+Route::get('/', 'Frontend\FrontendController@getIndex');
 Route::get('lsbrand','Frontend\FrontendController@getTopcategorys');
 Route::get('chaohuodian','Frontend\FrontendController@getChaohuocategorys');
 Route::get('jinkoulingshi','Frontend\FrontendController@getChaohuocategorys');
@@ -103,6 +143,7 @@ Route::get('ask/edit/{id}','Ask\AskController@getEditask')->where(['id'=>'[0-9]+
 Route::post('/ask/update','Ask\AskController@askUpdate');
 Route::get('ask/del/{id}','Ask\AskController@delAsk')->where(['id'=>'[0-9]+']);
 //关于我们
+
 Route::get('about',function (){
     return view('frontend.about');
 });
@@ -112,3 +153,4 @@ Route::get('contact',function (){
 Route::get('law',function (){
     return view('frontend.law');
 });
+

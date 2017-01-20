@@ -29,3 +29,32 @@ $(document).ready(function() {
     });
 
 });
+
+$(function(){
+    $("#tj_btn").click(function(){
+        var phone = $("#phone").val();
+        var name=$("#guestname").val();
+        var sex=$("*[name='Sex']").val()
+        var adr=$("#adr").val();
+        var notes=$("#content").val();
+        var host=window.location.href;
+        if( phone  && /^1[3|4|5|8]\d{9}$/.test(phone ) ){
+            $.ajax({
+                //提交数据的类型 POST GET
+                type:"POST",
+                //提交的网址
+                url:"/phone",
+                //提交的数据
+                data:{"tel":phone,"host":host,"name":name,"notes":notes,"sex":sex,"adr":adr},
+                //返回数据的格式
+                datatype: "html",    //"xml", "html", "script", "json", "jsonp", "text".
+                success:function (response, stutas, xhr) {
+                    alert(response);
+                    $("#tj_btn").attr("disabled","disabled");
+                }
+            });
+        } else{
+            alert("您输入的手机号码"+result+"不正确，请重新输入")
+        }
+    })
+});

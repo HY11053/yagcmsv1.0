@@ -5,6 +5,7 @@
 	<title>{{$data_archive->title}}</title>
 	<meta name="keywords" content="{{$data_archive->keywords}}" />
 	<meta name="description" content="{{$data_archive->description}}" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="/frontend/css/style.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="/frontend/css/news.css"/>
 	<script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
@@ -174,9 +175,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 						</div>
 						<div class="bd">
 							<ul>
-								<li><span class="txt"><i>*</i>姓名</span><input type="text" name="guestname" id="guestname" value="" class="input_bk" placeholder="您的真实姓名"><span class="sex"><label><input type="radio" value="male" name="Sex" class="ly_radio"><em>先生</em></label><label><input type="radio" name="Sex" value="female" class="ly_radio"><em>女士</em></label></span></li>
-								<li><span class="txt"><i>*</i>手机</span><input type="text" class="input_bk" name="iphone" placeholder="电话是与您联系的重要方式"></li>
-								<li><span class="txt">地址</span><input type="text" class="input_bk" name="adr" placeholder="与您联系的重要方式"></li>
+								<li><span class="txt"><i>*</i>姓名</span><input type="text" name="guestname" id="guestname" value="" class="input_bk" placeholder="您的真实姓名">
+									<span class="sex"><label><input type="radio" value="male" name="Sex" class="ly_radio"><em>先生</em></label><label><input type="radio" name="Sex" value="female" class="ly_radio"><em>女士</em></label></span></li>
+								<li><span class="txt"><i>*</i>手机</span><input type="text" class="input_bk" id="phone" name="iphone" placeholder="电话是与您联系的重要方式"></li>
+								<li><span class="txt">地址</span><input type="text" class="input_bk" name="adr" id="adr" placeholder="与您联系的重要方式"></li>
 								<li>
 									<span class="txt"><i>*</i>留言</span><textarea id="content" name="content" class="textarea_bk" placeholder="请输入您的留言内容或选择快捷留言"></textarea>
 									<div class="check_msg">
@@ -193,7 +195,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 									</div>
 								</li>
 								<li>
-									<span class="txt">&nbsp;</span><input type="submit" value="提交留言" class="btn">
+									<span class="txt">&nbsp;</span><input type="submit" value="提交留言" id="tj_btn" class="btn">
 								</li>
 							</ul>
 						</div>
