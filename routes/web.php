@@ -125,7 +125,7 @@ Route::get('citys','Frontend\FrontendController@getNewscategorys');
 Route::get('citys/page/{$page}','Frontend\FrontendController@getNewscategorys')->name('citys');
 Route::get('news','Frontend\FrontendController@getNewscategorys');
 Route::get('news/page/{page}','Frontend\FrontendController@getNewscategorys')->name('news');
-Route::get('lsbrand/{catename}/','Frontend\FrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+']);
+Route::get('lsbrand/{catename}/','Frontend\FrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+'])->name('lsbrands');
 Route::get('lsbrand/page/{page}','Frontend\FrontendController@getTopcategorys')->name('lsbrand');
 Route::get('lsbrand/{catename}/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+', 'catename' => '[a-z 0-9]+']);
 Route::get('news/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
