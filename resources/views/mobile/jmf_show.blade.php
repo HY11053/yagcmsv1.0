@@ -4,38 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="wap-font-scale" content="no"/>
-    <title>品牌列表页</title>
+    <title>品牌详情页</title>
     <link rel="stylesheet" type="text/css" href="/mobile-file/css/css.css">
     <script type="text/javascript" src="/mobile-file/js/jquery.min.js"></script>
     <script type="text/javascript" src="/mobile-file/js/TouchSlide.1.1.js"></script>
     <script type="text/javascript" src="/mobile-file/js/index.js"></script>
 </head>
 <body>
-
 <div class="viewport">
     @include('mobile.layout.nav')
-      <!--列表开始-->
-    <div class="brand_list">
-        <ul>
-            @foreach($articlelists as $articlelist)
-            <li>
-                <div class="img_show"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml"><img src="{{$articlelist->litpic}}" alt="{{$articlelist->shorttitle}}"/></a></div>
-                <div class="cont">
-                    <p class="tit"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml">{{$articlelist->shorttitle}}</a></p>
-                    <p class="price">基本投资：<em>{{$articlelist->brandpay}}</em></p>
-                    <p class="info">经营范围：{{$articlelist->brandmap}}</p>
-                    <p class="btn"><a href="#" class="btn_ask">加盟咨询</a><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml" class="btn_intro">品牌介绍</a></p>
-                </div>
-            </li>
-            @endforeach
-        </ul>
-
-        <!--分页开始-->
-        <div class="page">
-            {{$articlelists->links()}}
+    <!--内容开始-->
+    <div class="brand_detail">
+        <div class="hd">
+            <div class="img_show"><img src="{{$data_archive->litpic}}" alt=""/></div>
+            <div class="cont">
+                <p class="tit">{{$data_archive->shorttitle}}</p>
+                <p class="price">基本投资：<em>{{$data_article->brandpay}}</em></p>
+                <p class="info">加盟模式：{{$data_article->brandmap}}</p>
+            </div>
         </div>
-        <!--分页开始-->
+
+        <div class="brand_company">
+            <p><strong>公司名称：</strong>{{$data_article->brandgroup}}</p>
+            <p><strong>联系电话：</strong>400-881-3178</p>
+            <p><strong>公司地址：</strong>{{$data_article->brandgarea}}</p>
+        </div>
+
+        <div class="brand_cont">
+            {!!$data_article->body!!}
+        </div>
+
+        <!--按钮-->
+        <div class="index_btn" > <a href="#" class="btn_2">开店咨询</a> <a href="#" class="btn">索取资料</a> </div>
+        <!--按钮-->
+
     </div>
+
     <!--内容结束-->
 
     <!--在线留言开始-->
@@ -62,6 +66,7 @@
         </div>
     </div>
     <!--在线留言结束-->
+
     <!--footer开始-->
     <div class="footer">
         <div class="footer_nav"> <a href="#">网站地图</a>|<a href="#">关于我们</a>|<a href="#">免责声明</a>|<a href="#">电脑版</a> </div>
@@ -76,15 +81,24 @@
 <!--底部固定导航 开始-->
 <div class="fixed_nav">
     <ul>
-        <li> <a href="index.html"> <i class="icon1"></i>
+        <li>
+            <a href="index.html">
+                <i class="icon1"></i>
                 <p>首页</p>
-            </a> </li>
-        <li> <a href="javascript:void(0)"> <i class="icon2"></i>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <i class="icon2"></i>
                 <p>在线咨询</p>
-            </a> </li>
-        <li> <a href="javascript:void(0)" id="js_popup"> <i class="icon3"></i>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" id="js_popup">
+                <i class="icon3"></i>
                 <p>快速留言</p>
-            </a> </li>
+            </a>
+        </li>
     </ul>
 </div>
 <!--底部固定导航 结束-->
@@ -92,7 +106,11 @@
 <!--弹窗 在线留言 开始-->
 <div class="popup_mask">
     <div class="popup">
-        <div class="hd"> <span class="tit">快速留言</span> <em>(客服将第一时间给您回电)</em> <a class="popup_close" href="#">关闭</a> </div>
+        <div class="hd">
+            <span class="tit">快速留言</span>
+            <em>(客服将第一时间给您回电)</em>
+            <a class="popup_close" href="#">关闭</a>
+        </div>
         <div class="bd">
             <ul>
                 <li>

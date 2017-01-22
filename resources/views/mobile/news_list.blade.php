@@ -3,38 +3,40 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <meta name="wap-font-scale" content="no"/>
-    <title>品牌列表页</title>
+    <title>文章列表页</title>
     <link rel="stylesheet" type="text/css" href="/mobile-file/css/css.css">
     <script type="text/javascript" src="/mobile-file/js/jquery.min.js"></script>
     <script type="text/javascript" src="/mobile-file/js/TouchSlide.1.1.js"></script>
     <script type="text/javascript" src="/mobile-file/js/index.js"></script>
 </head>
 <body>
-
 <div class="viewport">
-    @include('mobile.layout.nav')
-      <!--列表开始-->
-    <div class="brand_list">
-        <ul>
-            @foreach($articlelists as $articlelist)
-            <li>
-                <div class="img_show"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml"><img src="{{$articlelist->litpic}}" alt="{{$articlelist->shorttitle}}"/></a></div>
-                <div class="cont">
-                    <p class="tit"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml">{{$articlelist->shorttitle}}</a></p>
-                    <p class="price">基本投资：<em>{{$articlelist->brandpay}}</em></p>
-                    <p class="info">经营范围：{{$articlelist->brandmap}}</p>
-                    <p class="btn"><a href="#" class="btn_ask">加盟咨询</a><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml" class="btn_intro">品牌介绍</a></p>
-                </div>
-            </li>
-            @endforeach
-        </ul>
+  @include('mobile.layout.nav')
+    <!--内容开始-->
+    <div class="list_middle">
+        <div class="text_centre">
+            <ul>
+            @foreach($articles as $article)
+                <li> <a href="{{$article->retypedir}}{{$article->typedir}}{{$article->id}}.shtml">
+                        <div class="img_show"><img src="{{$article->litpic}}" class="img_list"></div>
+                        <div class="cont">
+                            <p class="tit_1">{{$article->title}}</p>
+                            <p class="info">{{str_limit(trim(strip_tags($article->description)),$limit = 105,$end = '...')}}</p>
+                        </div>
+                    </a>
+                </li>
+                @endforeach
 
-        <!--分页开始-->
-        <div class="page">
-            {{$articlelists->links()}}
+            </ul>
         </div>
         <!--分页开始-->
+        <div class="page">
+            <ol>
+               {{$articles->links()}}
+            </ol>
+        </div>
+        <!--分页开始-->
+
     </div>
     <!--内容结束-->
 
@@ -62,6 +64,7 @@
         </div>
     </div>
     <!--在线留言结束-->
+
     <!--footer开始-->
     <div class="footer">
         <div class="footer_nav"> <a href="#">网站地图</a>|<a href="#">关于我们</a>|<a href="#">免责声明</a>|<a href="#">电脑版</a> </div>

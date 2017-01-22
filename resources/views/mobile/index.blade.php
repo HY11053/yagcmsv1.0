@@ -19,7 +19,7 @@
     <!--最新品牌 开始-->
     <div class="index_item">
         <div class="common_tit">
-            <a class="tit" href="#">零食品牌加盟店</a>
+            <a class="tit" href="/lsbrand">零食品牌加盟店</a>
         </div>
         <div class="bd">
             <ul>
@@ -54,7 +54,7 @@
     <!--推荐品牌 开始-->
     <div class="index_item">
         <div class="common_tit">
-            <a class="tit" href="#">炒货店加盟</a>
+            <a class="tit" href="/chaohuodian">炒货店加盟</a>
         </div>
         <div class="bd">
             <ul>
@@ -89,7 +89,7 @@
     <!--推荐品牌 开始-->
     <div class="index_item">
         <div class="common_tit">
-            <a class="tit" href="#">进口零食店加盟</a>
+            <a class="tit" href="/jinkoulingshi">进口零食店加盟</a>
         </div>
         <div class="bd">
             <ul>
@@ -125,8 +125,8 @@
     <!--加盟快讯 开始-->
     <div class="index_news">
         <div class="common_tit">
-            <a class="more" href="#">更多&gt;&gt;</a>
-            <a class="tit" href="#">加盟快讯</a>
+            <a class="more" href="/news">更多&gt;&gt;</a>
+            <a class="tit" href="/news">加盟快讯</a>
         </div>
         <div class="bd">
             <ul>
@@ -141,8 +141,8 @@
     <!--创业指南 开始-->
     <div class="index_news">
         <div class="common_tit">
-            <a class="more" href="#">更多&gt;&gt;</a>
-            <a class="tit" href="#">创业指南</a>
+            <a class="more" href="/ask">更多&gt;&gt;</a>
+            <a class="tit" href="/ask">创业指南</a>
         </div>
         <div class="bd">
             <ul>
@@ -157,7 +157,7 @@
     <!--footer开始-->
     <div class="footer">
         <div class="footer_nav">
-            <a href="#">网站地图</a>|<a href="#">关于我们</a>|<a href="#">免责声明</a>|<a href="#">电脑版</a>
+            <a href="#">网站地图</a>|<a href="/about">关于我们</a>|<a href="/law">免责声明</a>|<a href="/">电脑版</a>
         </div>
         <div class="copyright">
             <p>零食加盟网 沪ICP备14037163号-46</p>

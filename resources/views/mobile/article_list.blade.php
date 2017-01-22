@@ -17,11 +17,11 @@
         <div class="text_centre">
             <ul>
             @foreach($articles as $article)
-                <li> <a href="#">
+                <li> <a href="{{$article->typedir}}{{$article->id}}.shtml">
                         <div class="img_show"><img src="{{$article->litpic}}" class="img_list"></div>
                         <div class="cont">
                             <p class="tit_1">{{$article->title}}</p>
-                            <p class="info">{{$article->description}}</p>
+                            <p class="info">{{str_limit(trim(strip_tags($article->description)),$limit = 105,$end = '...')}}</p>
                         </div>
                     </a>
                 </li>

@@ -19,12 +19,12 @@
         <ul>
             @foreach($articlelists as $articlelist)
             <li>
-                <div class="img_show"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml"><img src="{{$articlelist->litpic}}" alt="{{$articlelist->shorttitle}}"/></a></div>
+                <div class="img_show"><a href="{{$articlelist->typedir}}{{$articlelist->id}}.shtml"><img src="{{$articlelist->litpic}}" alt="{{$articlelist->shorttitle}}"/></a></div>
                 <div class="cont">
-                    <p class="tit"><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml">{{$articlelist->shorttitle}}</a></p>
+                    <p class="tit"><a href="{{$articlelist->typedir}}{{$articlelist->id}}.shtml">{{$articlelist->shorttitle}}</a></p>
                     <p class="price">基本投资：<em>{{$articlelist->brandpay}}</em></p>
                     <p class="info">经营范围：{{$articlelist->brandmap}}</p>
-                    <p class="btn"><a href="#" class="btn_ask">加盟咨询</a><a href="{{$navstopdir}}{{$articlelist->typedir}}{{$articlelist->id}}.shtml" class="btn_intro">品牌介绍</a></p>
+                    <p class="btn"><a href="#" class="btn_ask">加盟咨询</a><a href="{{$articlelist->typedir}}{{$articlelist->id}}.shtml" class="btn_intro">品牌介绍</a></p>
                 </div>
             </li>
             @endforeach

@@ -38,13 +38,12 @@ class MobileFrontendController extends Controller
 
         }
 
-        return view('frontend.news_list',
+        return view('mobile.news_list',
             compact(
                 'typeinfo',
                 'articles',
                 'typelinks',
                 'hotbrands'
-
             ));
     }
     /*
@@ -59,6 +58,8 @@ class MobileFrontendController extends Controller
         $articles=new Archive;
         $addonarticle=new addonarticle();
         $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
+        $navstopdir=substr($categories->where('id',1)->value('typedir'),0,strlen($categories->where('id','1')->value('typedir'))-1);
+
         if(preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
@@ -91,7 +92,7 @@ class MobileFrontendController extends Controller
         }
 
 
-        return view('mobile.brand_list',compact('ntopdatas','article','typeinfos','articlelists','typelinks','tjarticles'));
+        return view('mobile.brand_list',compact('navstopdir','ntopdatas','article','typeinfos','articlelists','typelinks','tjarticles'));
     }
     /*
      *  零食品牌资讯栏目访问控制
@@ -157,12 +158,14 @@ class MobileFrontendController extends Controller
         $articles = new Archive;
         $addonarticle = new addonarticle();        ;
         $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
+        $navstopdir=substr($categories->where('id',1)->value('typedir'),0,strlen($categories->where('id','1')->value('typedir'))-1);
+
         if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
             $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 2)->paginate(10);
             for ($i = 0; $i < count($articlelists); $i++) {
-                $articlelists[$i]->typedir = $this_typeinfo->typeid;
+                $articlelists[$i]->typedir = $this_typeinfo->typedir;
                 $articlelists[$i]->brandpay = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandpay');
                 $articlelists[$i]->brandorigin = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandorigin');
                 $articlelists[$i]->brandnum = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandnum');
@@ -173,7 +176,7 @@ class MobileFrontendController extends Controller
         }
 
 
-        return view('frontend.pay_list', compact('this_typeinfo', 'articlelists','typelinks'));
+        return view('mobile.pay_list', compact('this_typeinfo', 'navstopdir','articlelists','typelinks'));
 
     }
 
@@ -188,18 +191,18 @@ class MobileFrontendController extends Controller
         $articles = new Archive;
         $addonarticle = new addonarticle();
         $typelinks=$categories->where('reid',0)->orderBy('sortrank','desc')->get();
-        if (preg_match('/([\w]+)/', $request->path(), $matches)) {
+            if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
-            //dd($this_typeinfo);
+
             $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 1)->paginate(10);
             $article=$articles->where('typeid',$this_typeinfo->id)->where('mid',1)->where('flag','c')->take(18)->get();
             for ($i=0; $i<count($article);$i++){
-                $article[$i]->typedir=$this_typeinfo->typeid;
+                $article[$i]->typedir=$this_typeinfo->typedir;
 
             }
             for ($i = 0; $i < count($articlelists); $i++) {
-                $articlelists[$i]->typedir = $this_typeinfo->typeid;
+                $articlelists[$i]->typedir = $this_typeinfo->typedir;
                 $articlelists[$i]->brandpay = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandpay');
                 $articlelists[$i]->brandorigin = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandorigin');
                 $articlelists[$i]->brandnum = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandnum');
@@ -208,9 +211,7 @@ class MobileFrontendController extends Controller
 
             }
         }
-
-
-        return view('mobile.brand_list', compact('this_typeinfo','article', 'articlelists','typelinks'));
+        return view('mobile.chaohuo_list', compact('this_typeinfo','article', 'articlelists','typelinks'));
 
     }
 
@@ -247,13 +248,13 @@ class MobileFrontendController extends Controller
                         $data_articlelitpic=$article->where('aid',$matches[2])->where('typeid', "$typeid")->value('imageslitpic');
                         $data_articlelitpics=array_filter(explode(',',$data_articlelitpic));
 
-                        return view('frontend.brand_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
+                        return view('mobile.brand_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
                     }elseif ($data_archive->mid ==2){
-                        return view('frontend.jmf_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
+                        return view('mobile.jmf_show',compact('data_article','data_archive','typelinks','navstopdir','hotbrands','newbrands','retypedir','tjarticles','data_articlelitpics'));
 
                     }else{
 
-                        return view('frontend.news_show',compact('data_article','data_archive','typelinks','retypedir','tjarticles','htarticles','hotbrands'));
+                        return view('mobile.news_show',compact('data_article','data_archive','typelinks','retypedir','tjarticles','htarticles','hotbrands'));
 
                     }
                 }else{
@@ -302,7 +303,7 @@ class MobileFrontendController extends Controller
 
 
             if($data_article){
-                return view('frontend.news_show',compact('data_article','data_archive','typelinks','tjarticles','htarticles','hotbrands','retypedir'));
+                return view('mobile.news_show',compact('data_article','data_archive','typelinks','tjarticles','htarticles','hotbrands','retypedir'));
             }
             else{
                 abort(404);
