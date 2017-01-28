@@ -192,16 +192,9 @@
             </div>
            <div class="common_list">
                <ul>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">零食加盟店选址注意事项</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">想要开好零食店必须知道的事</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">长假期间零食加盟店要注意哪些事</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">秋季散装休闲零食如何储存</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">开休闲食品加盟店日常小道具</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">零食加盟店选址注意事项</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">零食加盟店选址注意事项</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">想要开好零食店必须知道的事</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">长假期间零食加盟店要注意哪些事</a></li>
-                   <li><a href="#" target="_blank" title="想要开好零食店必须知道的事">秋季散装休闲零食如何储存</a></li>
+				   @foreach($hotbrands as $hotbrand)
+                   <li><a href="/lsbrand{{$hotbrand->typedir}}{{$hotbrand->id}}.shtml" target="_blank" title="{{$hotbrand->title}}">{{$hotbrand->title}}</a></li>
+                   @endforeach
                </ul>
            </div>
 		</div>

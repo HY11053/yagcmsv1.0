@@ -1,7 +1,7 @@
 
 <!--footer开始-->
 <div class="footer">
-    <div class="footer_nav"><a href="#">关于我们</a>　|　<a href="#">企业服务</a>　|　<a href="#">人才招聘</a>　|　<a href="#">联系我们</a>　|　<a href="#">合作客户</a>　|　<a href="#">法律声明</a>　|　<a href="#">友情链接</a>　|　<a href="#">服务导航</a>　|　<a href="#">网站地图</a>　|　<a href="#">小行业地图</a>　|　<a href="#">加盟导航 sitemap</a></div>
+    <div class="footer_nav"><a href="/about">关于我们</a>　|　<a href="/service">企业服务</a>　|　<a href="#">人才招聘</a>　|　<a href="#">联系我们</a>　|　<a href="#">合作客户</a>　|　<a href="/law">法律声明</a>　|　<a href="#">友情链接</a>　|　<a href="#">服务导航</a>　|　<a href="/sitemap.xml">网站地图</a>　|　<a href="/sitemap">小行业地图</a>　|　<a href="#">加盟导航 sitemap</a></div>
 
     <div class="copyright">
         <p>零食加盟网友情提示：多打电话、多咨询、实地考察，可降低投资风险！</p>

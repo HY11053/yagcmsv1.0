@@ -224,7 +224,7 @@
 
 <!--比一比 begin-->
 <div class="byb" id="bybLayer" style="display: none">
-	<form action="http://zf.qudao.com/comparision/index.html" method="post" target="_blank">
+	<form action="/comparision/" method="post" target="_blank">
 		<h2><em></em><span id="bybNumber">[<span id="Db_number">1</span>/3]</span>对比框</h2>
 		<div class="byb-list" id="selectedplan"> </div>
 		<div class="byb-ft"> <a href="javascript:void(0)" class="byb-submit" id="byb-submit">对比</a> 
@@ -244,8 +244,8 @@
 <!--比一比 begin-->
 </body>
 </html>
-<script src="http://js.qudao.com/common/jquery.cookie.js"></script>
-<script src="http://js.qudao.com/common/jquery.dialog.js"></script>
+<script src="/frontend/js/jquery.cookie.js"></script>
+<script src="/frontend/js/jquery.dialog.js"></script>
 <script type="text/javascript">
 $(function(){
     var Obj = $.cookie('prosion');
@@ -314,13 +314,13 @@ $(function(){
     });
     bybReset.bind("click", function(){
         selectedplan.html('');
-        $.cookie('prosion',null,{path:'/',domain:'zf.qudao.com'});
+        $.cookie('prosion',null,{path:'/',domain:'www.larcms.com'});
         proLayer.hide();
         $("#productBox .checkbox").attr("checked",false);
     });
     
     $('#byb-submit').click(function(){
-        var url = "http://zf.qudao.com/comparision/";
+        var url = "/comparision/";
         
         if($("#selectedplan a").length>=1){
             url+= $("#selectedplan a").eq(0).attr('pid')+"-";
@@ -333,9 +333,9 @@ $(function(){
             url+= "0-";
         }
         if($("#selectedplan a").length==3){
-            url+= $("#selectedplan a").eq(2).attr('pid')+".html";
+            url+= $("#selectedplan a").eq(2).attr('pid')+".shtml";
         }else{
-            url+= "0.html";
+            url+= "0.shtml";
         }
         window.location.href=url;
     });

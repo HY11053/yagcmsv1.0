@@ -79,20 +79,30 @@ Route::get('/phone','phone\PhoneController@getPhoneDates');
 */
 Route::group(['domain' => 'm.larcms.com'], function () {
     Route::get('/', 'Frontend\MobileFrontendController@getIndex');
+    Route::get('/', 'Frontend\MobileFrontendController@getIndex');
     Route::get('lsbrand','Frontend\MobileFrontendController@getTopcategorys');
     Route::get('chaohuodian','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('chaohuodian/page/{page}','Frontend\MobileFrontendController@getChaohuocategorys')->name('chaohuodian');
     Route::get('jinkoulingshi','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('jinkoulingshi/page/{page}','Frontend\MobileFrontendController@getChaohuocategorys')->name('jinkoulingshi');
     Route::get('ganguodian','Frontend\MobileFrontendController@getChaohuocategorys');
+    Route::get('ganguodian/page/{page}','Frontend\MobileFrontendController@getChaohuocategorys')->name('jinkoulingshi');
     Route::get('lingshijinhuo','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('lingshijinhuo/page/{page}','Frontend\MobileFrontendController@getNewscategorys')->name('lingshijinhuo');
     Route::get('chaohuodian/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
     Route::get('ganguodian/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
     Route::get('jinkoulingshi/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
     Route::get('jiamengfei','Frontend\MobileFrontendController@getFeiyongcategorys');
+    Route::get('jiamengfei/page/{page}','Frontend\MobileFrontendController@getFeiyongcategorys');
     Route::get('jiamengfei/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+']);
     Route::get('zhanhui','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('zhanhui/page/{page}','Frontend\MobileFrontendController@getNewscategorys')->name('zhanhui');
     Route::get('citys','Frontend\MobileFrontendController@getNewscategorys');
+    Route::get('citys/page/{page}','Frontend\MobileFrontendController@getNewscategorys')->name('citys');
     Route::get('news','Frontend\MobileFrontendController@getNewscategorys');
-    Route::get('lsbrand/{catename}/','Frontend\MobileFrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+']);
+    Route::get('news/page/{page}','Frontend\MobileFrontendController@getNewscategorys')->name('news');
+    Route::get('lsbrand/{catename}/','Frontend\MobileFrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+'])->name('lsbrands');
+    Route::get('lsbrand/page/{page}','Frontend\MobileFrontendController@getTopcategorys')->name('lsbrand');
     Route::get('lsbrand/{catename}/{id}.shtml','Frontend\MobileFrontendController@getArticles')->where(['id' => '[0-9]+', 'catename' => '[a-z 0-9]+']);
     Route::get('news/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
     Route::get('zhanhui/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
@@ -100,6 +110,7 @@ Route::group(['domain' => 'm.larcms.com'], function () {
     Route::get('citys/{id}.shtml','Frontend\MobileFrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
     Route::get('paihangbang','Frontend\MobileFrontendController@getPaihangbang');
 });
+
 /*
 |--------------------------------------------------------------------------
 |
@@ -110,19 +121,23 @@ Route::group(['domain' => 'm.larcms.com'], function () {
 Route::get('/', 'Frontend\FrontendController@getIndex');
 Route::get('lsbrand','Frontend\FrontendController@getTopcategorys');
 Route::get('chaohuodian','Frontend\FrontendController@getChaohuocategorys');
+Route::get('chaohuodian/page/{page}','Frontend\FrontendController@getChaohuocategorys')->name('chaohuodian');
 Route::get('jinkoulingshi','Frontend\FrontendController@getChaohuocategorys');
+Route::get('jinkoulingshi/page/{page}','Frontend\FrontendController@getChaohuocategorys')->name('jinkoulingshi');
 Route::get('ganguodian','Frontend\FrontendController@getChaohuocategorys');
+Route::get('ganguodian/page/{page}','Frontend\FrontendController@getChaohuocategorys')->name('ganguodian');
 Route::get('lingshijinhuo','Frontend\FrontendController@getNewscategorys');
-Route::get('lingshijinhuo/page/{$page}','Frontend\FrontendController@getNewscategorys')->name('lingshijinhuo');
+Route::get('lingshijinhuo/page/{page}','Frontend\FrontendController@getNewscategorys')->name('lingshijinhuo');
 Route::get('chaohuodian/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('ganguodian/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('jinkoulingshi/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('jiamengfei','Frontend\FrontendController@getFeiyongcategorys');
+Route::get('jiamengfei/page/{page}','Frontend\FrontendController@getFeiyongcategorys')->name('jiamengfei');
 Route::get('jiamengfei/{id}.shtml','Frontend\FrontendController@getArticles')->where(['id' => '[0-9]+']);
 Route::get('zhanhui','Frontend\FrontendController@getNewscategorys');
-Route::get('zhanhui/page/{$page}','Frontend\FrontendController@getNewscategorys')->name('zhanhui');
+Route::get('zhanhui/page/{page}','Frontend\FrontendController@getNewscategorys')->name('zhanhui');
 Route::get('citys','Frontend\FrontendController@getNewscategorys');
-Route::get('citys/page/{$page}','Frontend\FrontendController@getNewscategorys')->name('citys');
+Route::get('citys/page/{page}','Frontend\FrontendController@getNewscategorys')->name('citys');
 Route::get('news','Frontend\FrontendController@getNewscategorys');
 Route::get('news/page/{page}','Frontend\FrontendController@getNewscategorys')->name('news');
 Route::get('lsbrand/{catename}/','Frontend\FrontendController@getCategorys')->where(['catename' => '[a-z 0-9]+'])->name('lsbrands');
@@ -133,6 +148,7 @@ Route::get('zhanhui/{id}.shtml','Frontend\FrontendController@getNewsarticle')->w
 Route::get('lingshijinhuo/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
 Route::get('citys/{id}.shtml','Frontend\FrontendController@getNewsarticle')->where(['id' => '[0-9]+']);
 Route::get('paihangbang','Frontend\FrontendController@getPaihangbang');
+Route::get('paihangbang/page/{page}','Frontend\FrontendController@getPaihangbang')->name('paihangbang');
 //搜索路由
 Route::get('search/city/{id}','Search\searchController@getSearchCity')->where(['id'=>'[0-9]+']);
 Route::get('search/{br}.shtml','Search\searchController@getSearch')->where(['br'=>'[a-z_0-9]+'])->name('searchs');
@@ -158,4 +174,5 @@ Route::get('contact',function (){
 Route::get('law',function (){
     return view('frontend.law');
 });
-
+//项目对比
+Route::get('comparision/{id1}-{id2}-{id3}.shtml','Comparision\ComparisionController@indexComparision')->where(['id1'=>'[0-9]+','id2'=>'[0-9]+','di3'=>'[0-9]+']);

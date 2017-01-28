@@ -108,7 +108,7 @@ class FrontendController extends Controller
             $typeid=$categories->where('typedir',"/$matches[1]/")->value('id');
             $articles = $this->getArclist($typeid,$page);
             $typeinfo = $this->getSinglcategory($typeid);
-            $hotbrands=$this->getFlagarticle($typeid,'',5,0,5);
+            $hotbrands=$this->getFlagarticle($typeid,'',10,4,0);
 
             return view(
                 'frontend.news_list',
@@ -165,7 +165,7 @@ class FrontendController extends Controller
      * 零食加盟费栏目访问控制
      */
 
-    function getFeiyongcategorys(Request $request)
+    function getFeiyongcategorys(Request $request,$page=0)
     {
         $categories = new category;
         $articles = new Archive;
@@ -174,7 +174,13 @@ class FrontendController extends Controller
         if (preg_match('/([\w]+)/', $request->path(), $matches)) {
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
-            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 2)->paginate(10);
+            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 2)->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page);
+
+            $cid=Route::currentRouteName()? Route::currentRouteName():Route::current()->uri();
+            $articlelists = Paginator::transfer(
+                $cid,//传入分类id,
+                $articlelists//传入原始分页器
+            );
                 for ($i = 0; $i < count($articlelists); $i++) {
                     $articlelists[$i]->typedir = $this_typeinfo->typeid;
                     $articlelists[$i]->brandpay = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandpay');
@@ -184,10 +190,11 @@ class FrontendController extends Controller
                     $articlelists[$i]->brandname = $addonarticle->where('aid', $articlelists[$i]->id)->value('brandname');
 
                 }
+            $hotbrands=$this->getFlagarticle(1,'',10,0,0);
             }
 
 
-            return view('frontend.pay_list', compact('this_typeinfo', 'articlelists','typelinks'));
+            return view('frontend.pay_list', compact('this_typeinfo', 'articlelists','typelinks','hotbrands'));
 
     }
 
@@ -196,8 +203,9 @@ class FrontendController extends Controller
      *
      */
 
-    function getChaohuocategorys(Request $request)
+    function getChaohuocategorys(Request $request,$page=0)
     {
+
         $categories = new category;
         $articles = new Archive;
         $addonarticle = new addonarticle();
@@ -206,7 +214,12 @@ class FrontendController extends Controller
             //获取推荐品牌
             $this_typeinfo = $categories->where('typedir', "/$matches[0]/")->first();
             //dd($this_typeinfo);
-            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 1)->paginate(10);
+            $articlelists = $articles->where('typeid', $this_typeinfo->id)->where('mid', 1)->paginate($perPage = 5, $columns = ['*'], $pageName = 'page', $page);
+            $cid=Route::currentRouteName()? Route::currentRouteName():Route::current()->uri();
+            $articlelists = Paginator::transfer(
+                $cid,//传入分类id,
+                $articlelists//传入原始分页器
+            );
             $article=$articles->where('typeid',$this_typeinfo->id)->where('mid',1)->where('flag','c')->take(18)->get();
             for ($i=0; $i<count($article);$i++){
                 $article[$i]->typedir=$this_typeinfo->typeid;
@@ -525,7 +538,7 @@ class FrontendController extends Controller
 
     }
 
-    function getPaihangbang(){
+    function getPaihangbang($page=0){
 
         //栏目部分
         $categorys=new category;
@@ -560,7 +573,13 @@ class FrontendController extends Controller
             ->join('addonarticles', 'archives.id', '=', 'addonarticles.aid')
             ->where('archives.mid',1)
             ->orderBy('addonarticles.brandapply','desc')
-            ->paginate(10);
+            ->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page);
+
+        $cid=Route::currentRouteName()? Route::currentRouteName():Route::current()->uri();
+        $articlelists = Paginator::transfer(
+            $cid,//传入分类id,
+            $articlelists//传入原始分页器
+        );
         //dd($articlelists);
        for($i=0;$i<count($articlelists);$i++) {
            $reid = DB::table('categories')->where('typedir', $articlelists[$i]->typedir)->value('reid');

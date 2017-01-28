@@ -23,6 +23,7 @@ class searchController extends Controller
         if(!empty($matches[2]) ){
             $categories=new category;
             $typereid=$categories->where('typedir','/'.$matches[2].'/')->value('id')?:0;
+            $typename=$categories->where('typedir','/'.$matches[2].'/')->value('typename');
             $typeinfos=$categories->where('reid',$typereid)->get();
             if(count($typeinfos)){
 
@@ -90,7 +91,8 @@ class searchController extends Controller
 
 
             }
-            return view('frontend.search',compact('articleinfos','typelinks','matches'));
+
+            return view('frontend.search',compact('articleinfos','typelinks','matches','typename'));
         }
 
 
@@ -143,7 +145,7 @@ class searchController extends Controller
             ->where('archives.mid',1)
             ->where('addonarticles.brandgarea','like','%'.$cityname.'%')
             ->paginate(10);
-        return view('frontend.search',compact('articleinfos','typelinks'));
+        return view('frontend.search_city',compact('articleinfos','typelinks','cityname'));
     }
 
 

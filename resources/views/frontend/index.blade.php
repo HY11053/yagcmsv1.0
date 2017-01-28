@@ -3,7 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>零食加盟网</title>
+<title>{{config('app.webname')['webname']}}</title>
+<meta name="keywords" content="{{config('app.webname')['keywords']}}"/>
+<meta name="description" content="{{config('app.webname')['description']}}"/>
 <link href="/frontend/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/frontend/js/jquery.min.js"></script>
 <script type="text/javascript" src="/frontend/js/jquery.SuperSlide.2.1.1.js"></script>
@@ -11,6 +13,7 @@
 </head>
 
 <body>
+
 @include('frontend.layouts.nav')
 	
 	<div class="sub_nav">
@@ -118,8 +121,6 @@
 			</div>
 		</div>
 
-		
-
 		<div class="index_box1_c">
             <!--焦点图 开始-->
             <div class="slideBox">
@@ -226,15 +227,15 @@
 	<div class="index_box3 clearfix">
 		<div class="index_box3_l">
 			<div class="img_show"><a href="#" target="_blank"><img src="/frontend/images/index_pic1.jpg" alt="零食店加盟"/></a></div>
-			<p class="tit"><a href="#" target="_blank">零食店加盟</a></p>
+			<p class="tit"><a href="{{$navstopdir}}" target="_blank">零食店加盟</a></p>
 			<p class="desc">中西美食 烹炸涮烤</p>
-			<p class="more"><a href="#" target="_blank">查看详情&gt;</a></p>
+			<p class="more"><a href="{{$navstopdir}}" target="_blank">查看详情&gt;</a></p>
 		</div>
 		<div class="index_box3_r">
 			<div class="hd">
 				<span class="tit">零食品牌</span>
 				<span class="desc">美式快餐 抢占商机</span>
-				<span class="more"><a href="#" target="_blank">更多&gt;&gt;</a></span>
+				<span class="more"><a href="{{$navstopdir}}" target="_blank">更多&gt;&gt;</a></span>
 			</div>
 			<div class="bd">
 				<div class="bd_l">
@@ -284,16 +285,16 @@
 	<!--第四部分 开始-->
 	<div class="index_box3 clearfix">
 		<div class="index_box3_l h420">
-			<div class="img_show"><a href="#" target="_blank"><img src="/frontend/images/index_pic2.jpg" alt="炒货品牌"/></a></div>
-			<p class="tit"><a href="#" target="_blank">炒货品牌</a></p>
+			<div class="img_show"><a href="/chaohuodian" target="_blank"><img src="/frontend/images/index_pic2.jpg" alt="炒货品牌"/></a></div>
+			<p class="tit"><a href="/chaohuodian" target="_blank">炒货品牌</a></p>
 			<p class="desc">中西美食 烹炸涮烤</p>
-			<p class="more"><a href="#" target="_blank">查看详情&gt;</a></p>
+			<p class="more"><a href="/chaohuodian" target="_blank">查看详情&gt;</a></p>
 		</div>
 		<div class="index_box3_r">
 			<div class="hd">
 				<span class="tit">炒货品牌</span>
 				<span class="desc">美式快餐 抢占商机</span>
-				<span class="more"><a href="#" target="_blank">更多&gt;&gt;</a></span>
+				<span class="more"><a href="/chaohuodian" target="_blank">更多&gt;&gt;</a></span>
 			</div>
 			<div class="bd">
 				<div class="bd_l">
@@ -334,15 +335,15 @@
 	<div class="index_box3 clearfix">
 		<div class="index_box3_l h420">
 			<div class="img_show"><a href="#" target="_blank"><img src="/frontend/images/index_pic3.jpg" alt="进口零食"/></a></div>
-			<p class="tit"><a href="#" target="_blank">进口零食</a></p>
+			<p class="tit"><a href="/jinkoulingshi" target="_blank">进口零食</a></p>
 			<p class="desc">中西美食 烹炸涮烤</p>
-			<p class="more"><a href="#" target="_blank">查看详情&gt;</a></p>
+			<p class="more"><a href="/jinkoulingshi" target="_blank">查看详情&gt;</a></p>
 		</div>
 		<div class="index_box3_r">
 			<div class="hd">
 				<span class="tit">进口零食</span>
 				<span class="desc">美式快餐 抢占商机</span>
-				<span class="more"><a href="#" target="_blank">更多&gt;&gt;</a></span>
+				<span class="more"><a href="/jinkoulingshi" target="_blank">更多&gt;&gt;</a></span>
 			</div>
 			<div class="bd">
 				<div class="bd_l">
@@ -395,7 +396,7 @@
                 <div class="con_fir">
                     <div class="fir_left">
 						@foreach($seeallbrands as $seeallbrand)
-                         <div class="li_div"><a href="{{$navstopdir}}{{$seeallbrand->typedir}}{{$seeallbrand->id}}.shtml" title="{{$seeallbrand->shorttitle}}" target="_blank"><img src="{{$seeallbrand->litpic}}"></a><span><a href="{{$seeallbrand->typedir}}{{$seeallbrand->id}}.shtml" target="_blank">{{$seeallbrand->shorttitle}}</a><br><font color="#9c9c9c">{{$seeallbrand->brandapply}}人</font><em><a href="#" target="_blank">咨询</a></em></span></div>
+                         <div class="li_div"><a href="{{$navstopdir}}{{$seeallbrand->typedir}}{{$seeallbrand->id}}.shtml" title="{{$seeallbrand->shorttitle}}" target="_blank"><img src="{{$seeallbrand->litpic}}"></a><span><a href="{{$navstopdir}}{{$seeallbrand->typedir}}{{$seeallbrand->id}}.shtml" target="_blank">{{$seeallbrand->shorttitle}}</a><br><font color="#9c9c9c">{{$seeallbrand->brandapply}}人</font><em><a href="#" target="_blank">咨询</a></em></span></div>
                          @endforeach
                     </div>
                     <div class="fir_right">
