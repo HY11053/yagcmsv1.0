@@ -139,15 +139,15 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 					<div class="join_intro">
 						{!!$data_article->jmxq!!}
 					</div>
-					<div class="join_tit" id="js_join_2"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟优势</em></span> </div>
+					<div class="join_tit" id="js_join_2"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟条件</em></span> </div>
 					<div class="join_intro">
 						{!!$data_article->jmys!!}
 					</div>
-					<div class="join_tit" id="js_join_3"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟流程</em></span> </div>
+					<div class="join_tit" id="js_join_3"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟利润</em></span> </div>
 					<div class="join_intro">
 						{!!$data_article->jmlc!!}
 					</div>
-					<div class="join_tit" id="js_join_4"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟政策</em></span> </div>
+					<div class="join_tit" id="js_join_4"> <span class="tit">{{$data_archive->shorttitle}}<em>加盟优势</em></span> </div>
 					<div class="join_intro">
 						{!!$data_article->jmdt!!}
 					</div>

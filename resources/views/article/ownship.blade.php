@@ -96,7 +96,7 @@
 
                                         <th style="width: 10%">发布时间</th>
                                         <th style="width: 8%">发布人</th>
-                                        <th style="width: 16%">编辑</th>
+                                        <th style="width: 18%">编辑</th>
                                     </tr>
                                     </thead>
                                     <tbody>

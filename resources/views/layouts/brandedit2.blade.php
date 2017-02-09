@@ -71,12 +71,12 @@
     <div class="block">
         <div class="tags">
             <a href="" class="tag">
-                <span>加盟优势</span>
+                <span>加盟条件</span>
             </a>
         </div>
         <div class="block_content">
             <h2 class="title">
-                <a>加盟优势处理部分</a>
+                <a>加盟条件处理部分</a>
             </h2>
             <div class="byline">
                 <span>13 hours ago</span> by <a>Jane Smith</a>
@@ -105,12 +105,12 @@
     <div class="block">
         <div class="tags">
             <a href="" class="tag">
-                <span>加盟流程</span>
+                <span>加盟利润</span>
             </a>
         </div>
         <div class="block_content">
             <h2 class="title">
-                <a>加盟流程处理部分</a>
+                <a>加盟利润处理部分</a>
             </h2>
             <div class="byline">
                 <span>13 hours ago</span> by <a>Jane Smith</a>
@@ -141,12 +141,12 @@
     <div class="block">
         <div class="tags">
             <a href="" class="tag">
-                <span>加盟政策</span>
+                <span>加盟优势</span>
             </a>
         </div>
         <div class="block_content">
             <h2 class="title">
-                <a>加盟政策处理</a>
+                <a>加盟优势处理</a>
             </h2>
             <div class="byline">
                 <span>13 hours ago</span> by <a>Jane Smith</a>
